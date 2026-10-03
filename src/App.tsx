@@ -9,10 +9,49 @@ import { SchematicGrid } from './components/SchematicGrid'
 import { BUSINESS_EMAIL, CONTACT_EMAIL, FOUNDER_EMAIL } from './contact'
 
 const features = [
-  { title: 'Onboarding', copy: 'Employee data, equipment, access, approvals and tasks in one traceable workflow.', icon: Users },
-  { title: 'Role changes', copy: 'Review existing permissions and devices, then retain, adjust or remove them deliberately.', icon: RefreshCw },
-  { title: 'Offboarding', copy: 'Return access, licenses and hardware in a controlled process with clear ownership.', icon: ShieldCheck },
+  { title: 'Onboarding', copy: 'Employee data, equipment, access, approvals and tasks in one traceable workflow.', href: '#/onboarding', icon: Users },
+  { title: 'Role changes', copy: 'Review existing permissions and devices, then retain, adjust or remove them deliberately.', href: '#/role-changes', icon: RefreshCw },
+  { title: 'Offboarding', copy: 'Return access, licenses and hardware in a controlled process with clear ownership.', href: '#/offboarding', icon: ShieldCheck },
 ]
+
+const processPages = {
+  onboarding: {
+    eyebrow: 'EMPLOYEE ONBOARDING',
+    title: 'Ready before day one.',
+    intro: 'Turn a confirmed hire into a coordinated plan for people, equipment and access — with one visible owner for every step.',
+    icon: Users,
+    facts: [['Trigger', 'Confirmed start date'], ['Teams', 'HR · Manager · IT'], ['Outcome', 'Ready for work']],
+    steps: [
+      ['01', 'Capture requirements', 'HR provides the employee, role and start date. The manager confirms equipment, applications and access.'],
+      ['02', 'Prepare the workplace', 'Tasks are assigned to IT, hardware logistics and application owners with clear due dates.'],
+      ['03', 'Confirm readiness', 'Open approvals and blockers stay visible until the employee is ready for the first day.'],
+    ],
+  },
+  'role-changes': {
+    eyebrow: 'ROLE CHANGES',
+    title: 'Change access with intent.',
+    intro: 'Coordinate internal moves and responsibility changes without simply copying old permissions or losing existing context.',
+    icon: RefreshCw,
+    facts: [['Trigger', 'Role or team change'], ['Teams', 'Manager · HR · IT'], ['Outcome', 'Reviewed access']],
+    steps: [
+      ['01', 'Review the new role', 'The manager records what changes and which responsibilities begin or end.'],
+      ['02', 'Compare requirements', 'Existing hardware, licenses and permissions are reviewed before anything is retained, added or removed.'],
+      ['03', 'Complete the transition', 'Owners confirm each adjustment and leave a traceable view of the final setup.'],
+    ],
+  },
+  offboarding: {
+    eyebrow: 'CONTROLLED OFFBOARDING',
+    title: 'Close every open end.',
+    intro: 'Bring access removal, license recovery and hardware return into one controlled process with clear timing and ownership.',
+    icon: ShieldCheck,
+    facts: [['Trigger', 'Confirmed end date'], ['Teams', 'HR · Manager · IT'], ['Outcome', 'Controlled closure']],
+    steps: [
+      ['01', 'Plan the departure', 'HR confirms the final date while the manager identifies handover needs and exceptional access.'],
+      ['02', 'Recover and revoke', 'IT and responsible owners remove permissions, recover licenses and coordinate device returns.'],
+      ['03', 'Verify completion', 'The process closes only when required tasks are confirmed and remaining exceptions are visible.'],
+    ],
+  },
+} as const
 
 const faqs = [
   ['What is Pelvin?', 'Pelvin is a B2B software product in development that brings employee lifecycle IT processes into one shared workspace.'],
@@ -31,7 +70,7 @@ function Hero() {
 }
 
 function ProductOverview() {
-  return <section className="section-frame at-cost" id="product"><SectionMarker number="0.1" name="LIFECYCLE" /><div className="section-heading align-left"><span className="orange-tag">EMPLOYEE LIFECYCLE</span><h2>Every transition.<br />One clear process.</h2><p>Pelvin reveals what is complete, what is missing, who owns the next step and where a process is blocked — giving HR and IT one shared view.</p><a href="#/produktgespraech">Request a product walkthrough <ArrowRight size={16} /></a></div><div className="feature-strip">{features.map((feature, index) => { const Icon = feature.icon; return <article key={feature.title}><i className="feature-junction feature-junction-tl" /><i className="feature-junction feature-junction-bl" />{index === features.length - 1 && <><i className="feature-junction feature-junction-tr" /><i className="feature-junction feature-junction-br" /></>}<Icon size={22} strokeWidth={1.6} /><h3>{feature.title}</h3><p>{feature.copy}</p></article> })}</div></section>
+  return <section className="section-frame at-cost" id="product"><SectionMarker number="0.1" name="LIFECYCLE" /><div className="section-heading align-left"><span className="orange-tag">EMPLOYEE LIFECYCLE</span><h2>Every transition.<br />One clear process.</h2><p>Pelvin reveals what is complete, what is missing, who owns the next step and where a process is blocked — giving HR and IT one shared view.</p><a href="#/produktgespraech">Request a product walkthrough <ArrowRight size={16} /></a></div><div className="feature-strip">{features.map((feature, index) => { const Icon = feature.icon; return <a href={feature.href} key={feature.title}><i className="feature-junction feature-junction-tl" /><i className="feature-junction feature-junction-bl" />{index === features.length - 1 && <><i className="feature-junction feature-junction-tr" /><i className="feature-junction feature-junction-br" /></>}<Icon size={22} strokeWidth={1.6} /><h3>{feature.title}</h3><p>{feature.copy}</p><span className="feature-open">View process <ArrowRight size={13} /></span></a> })}</div></section>
 }
 
 function HiringIntelligenceTeaser() {
@@ -61,6 +100,20 @@ function Footer() {
 }
 
 function PublicSite() { return <><NavBar /><main><Hero /><div className="industrial-shell"><ProductOverview /><HiringIntelligenceTeaser /><HowItWorks /><SchematicGrid /><SecurityBand /><FAQ /></div><CTA /></main><Footer /></> }
+
+function ProcessPage({ type }: { type: keyof typeof processPages }) {
+  const process = processPages[type]
+  const Icon = process.icon
+  return <div className="process-page"><NavBar /><main>
+    <section className="process-hero">
+      <div className="process-hero-copy"><span className="orange-tag">{process.eyebrow}</span><h1>{process.title}</h1><p>{process.intro}</p><a href="#/produktgespraech">Discuss this workflow <ArrowRight size={16} /></a></div>
+      <div className="process-symbol" aria-hidden="true"><i /><Icon size={72} strokeWidth={1.15} /><span>PELVIN / PROCESS</span></div>
+    </section>
+    <section className="process-facts">{process.facts.map(([label, value]) => <article key={label}><span>{label}</span><strong>{value}</strong></article>)}</section>
+    <section className="process-flow"><div className="process-flow-heading"><span className="orange-tag">THE WORKFLOW</span><h2>Three clear stages.</h2><p>Enough structure to coordinate the work without turning the process into unnecessary administration.</p></div><div className="process-step-list">{process.steps.map(([number, title, copy]) => <article key={number}><span>{number}</span><div><h3>{title}</h3><p>{copy}</p></div><i /></article>)}</div></section>
+    <section className="process-end"><span>One shared status. Clear next steps.</span><a href="#top">Back to overview <ArrowRight size={15} /></a></section>
+  </main><Footer /></div>
+}
 
 function LegalPage({ type }: { type: 'impressum' | 'datenschutz' | 'kontakt' }) {
   const content = type === 'impressum' ? { title: 'Legal notice', intro: 'Responsible information for this website and Pelvin’s current project status.', blocks: [['Provider', 'Pelvin\nDigital product initiative by Schahin Samadzadeh'], ['Responsible contact', `Schahin Samadzadeh\nEmail: ${FOUNDER_EMAIL}\nWeb: https://pelvin.net`], ['Project status', 'Pelvin is currently in product development. No existing customers, production integrations or live usage figures are represented. Business details will be updated once the company formation is complete.']] }
@@ -117,6 +170,9 @@ export default function App() {
   if (hash === '#/impressum') return <LegalPage type="impressum" />
   if (hash === '#/datenschutz') return <LegalPage type="datenschutz" />
   if (hash === '#/kontakt') return <LegalPage type="kontakt" />
+  if (hash === '#/onboarding') return <ProcessPage type="onboarding" />
+  if (hash === '#/role-changes') return <ProcessPage type="role-changes" />
+  if (hash === '#/offboarding') return <ProcessPage type="offboarding" />
   if (hash.startsWith('#/') && !demoOpen) return <NotFound />
   return <><PublicSite />{demoOpen && <DemoRequestModal onClose={closeDemo} />}</>
 }

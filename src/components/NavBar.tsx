@@ -11,9 +11,9 @@ const menus = [
     label: 'Product',
     columns: [
       [
-        { label: 'Onboarding', copy: 'Prepare new employees for productive work through one structured process.', href: '#product', icon: Users },
-        { label: 'Role changes', copy: 'Adjust access, devices and responsibilities with intent.', href: '#product', icon: RefreshCw },
-        { label: 'Offboarding', copy: 'Return permissions and hardware in a controlled workflow.', href: '#product', icon: ShieldCheck },
+        { label: 'Onboarding', copy: 'Prepare new employees for productive work through one structured process.', href: '#/onboarding', icon: Users },
+        { label: 'Role changes', copy: 'Adjust access, devices and responsibilities with intent.', href: '#/role-changes', icon: RefreshCw },
+        { label: 'Offboarding', copy: 'Return permissions and hardware in a controlled workflow.', href: '#/offboarding', icon: ShieldCheck },
       ],
       [
         { label: 'Tasks & approvals', copy: 'Clear steps, owners and decisions in one workflow.', href: '#functions', icon: ClipboardCheck },
