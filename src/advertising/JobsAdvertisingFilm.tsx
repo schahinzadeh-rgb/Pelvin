@@ -6,7 +6,7 @@ import {
 import { BrandMark } from '../components/Brand'
 import { NavBar } from '../components/NavBar'
 import { StoryVisualFrame } from './StoryVisualFrame'
-import { MarketDashboard } from './MarketDashboard'
+import { MarketDashboard, MarketDashboardFrame } from './MarketDashboard'
 import './advertising.css'
 import './jobsAdvertising.css'
 
@@ -51,31 +51,37 @@ function MarketVisual() {
 
 function CompanyVisual() {
   const activity = [['NOW', 'Security Analyst', 'New opening detected'], ['2D', 'Network Engineer', 'Role published'], ['5D', 'IT Support Engineer', 'Posting archived']]
-  return <div className="premium-company-ui premium-panel">
-    <PremiumBar label="COMPANY PROFILE" />
-    <div className="company-ui-top"><div className="company-ui-mark">N</div><div><span>TRACKED COMPANY</span><h3>NTS</h3><p><MapPin size={11} /> Austria · multiple locations</p></div><button type="button"><Bell size={13} /> Monitoring</button></div>
-    <div className="company-ui-metrics"><span><strong>24</strong> locations</span><span><strong>18</strong> active roles</span><span><strong>+38%</strong> activity</span></div>
-    <div className="company-ui-activity"><div className="activity-chart"><span>90D ACTIVITY</span><svg viewBox="0 0 320 82" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="activity-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#ff6b2c" stopOpacity=".3"/><stop offset="1" stopColor="#ff6b2c" stopOpacity="0"/></linearGradient></defs><path d="M0 66C30 68 35 46 62 52s35 17 58 5 35-38 61-29 37 28 61 13 35-28 78-18V82H0Z" fill="url(#activity-fill)"/><path d="M0 66C30 68 35 46 62 52s35 17 58 5 35-38 61-29 37 28 61 13 35-28 78-18" fill="none" stroke="#ff6b2c" strokeWidth="2"/></svg></div><div className="activity-feed">{activity.map(([time,title,note]) => <article key={title}><i /><div><strong>{title}</strong><small>{note}</small></div><time>{time}</time></article>)}</div></div>
-  </div>
+  return <MarketDashboardFrame active="Companies" eyebrow="COMPANY INTELLIGENCE" title="Company profile" subtitle="Current openings and recent hiring direction">
+    <div className="premium-company-ui premium-panel dashboard-workspace-panel">
+      <PremiumBar label="COMPANY PROFILE" />
+      <div className="company-ui-top"><div className="company-ui-mark">N</div><div><span>TRACKED COMPANY</span><h3>NTS</h3><p><MapPin size={13} /> Austria · multiple locations</p></div><button type="button"><Bell size={14} /> Monitoring</button></div>
+      <div className="company-ui-metrics"><span><strong>24</strong> locations</span><span><strong>18</strong> active roles</span><span><strong>+38%</strong> activity</span></div>
+      <div className="company-ui-activity"><div className="activity-chart"><div className="activity-chart-head"><span>90D ACTIVITY</span><b>+38% momentum</b></div><svg viewBox="0 0 320 82" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="activity-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#ff6b2c" stopOpacity=".3"/><stop offset="1" stopColor="#ff6b2c" stopOpacity="0"/></linearGradient></defs><path d="M0 66C30 68 35 46 62 52s35 17 58 5 35-38 61-29 37 28 61 13 35-28 78-18V82H0Z" fill="url(#activity-fill)"/><path d="M0 66C30 68 35 46 62 52s35 17 58 5 35-38 61-29 37 28 61 13 35-28 78-18" fill="none" stroke="#ff6b2c" strokeWidth="2.5"/></svg></div><div className="activity-feed">{activity.map(([time,title,note]) => <article key={title}><i /><div><strong>{title}</strong><small>{note}</small></div><time>{time}</time></article>)}</div></div>
+    </div>
+  </MarketDashboardFrame>
 }
 
 function SignalsVisual() {
   const signals = [['Infrastructure hiring accelerating', 'HIGH', '+38%'], ['Security roles repeatedly opened', 'MEDIUM', '3×'], ['Possible team expansion', 'MEDIUM', '+2 roles']]
-  return <div className="premium-signals-ui premium-panel">
-    <PremiumBar label="EXPLAINABLE SIGNALS" />
-    <div className="signals-ui-head"><div><BrainCircuit size={20} /><span>HIRING SIGNALS</span><h3>Activity interpreted<br />with context.</h3></div><div className="signal-score"><span>ACTIVITY SCORE</span><strong>82</strong><small>Elevated</small></div></div>
-    <div className="signals-ui-list">{signals.map(([title,confidence,value]) => <article key={title}><div><strong>{title}</strong><small><CircleDot size={9} /> Based on public job activity</small></div><b>{value}</b><em>{confidence}</em></article>)}</div>
-    <footer>Estimates for research · not confirmed personnel events</footer>
-  </div>
+  return <MarketDashboardFrame active="AI signals" eyebrow="EXPLAINABLE SIGNALS" title="Hiring signals" subtitle="Public activity interpreted with transparent context">
+    <div className="premium-signals-ui premium-panel dashboard-workspace-panel">
+      <PremiumBar label="EXPLAINABLE SIGNALS" />
+      <div className="signals-ui-head"><div><BrainCircuit size={24} /><span>HIRING SIGNALS</span><h3>Activity interpreted with context.</h3><p>Repeat postings and market changes are grouped into signals that remain explainable.</p></div></div>
+      <div className="signals-ui-list">{signals.map(([title,confidence,value]) => <article key={title}><span className="signal-marker"><CircleDot size={13} /></span><div><strong>{title}</strong><small>Based on public job activity</small></div><b>{value}</b><em>{confidence}</em></article>)}</div>
+      <footer>Estimates for research · not confirmed personnel events</footer>
+    </div>
+  </MarketDashboardFrame>
 }
 
 function ArchiveVisual() {
   const bars = [32,44,53,67,82,70,55,42,35]
-  return <div className="premium-archive-ui premium-panel">
-    <PremiumBar label="LIVE + ARCHIVE" />
-    <div className="archive-ui-grid"><div className="archive-role"><span><FileArchive size={13} /> ARCHIVED ROLE</span><h3>Network Operations Engineer</h3><p>NTS · Vienna, Austria</p><div><span>POSTED<small>12 Aug</small></span><i /><span>ARCHIVED<small>28 Sep</small></span><strong>47 days online</strong></div></div><div className="salary-insight"><span>MEDIAN ADVERTISED SALARY</span><strong>€58,400</strong><small>Observed range €49k – €71k</small><div>{bars.map((height,index) => <i style={{height:`${height}%`}} key={index} />)}</div></div></div>
-    <div className="archive-alert"><span><Bell size={13} /><i /></span><div><strong>New comparable role detected</strong><small>Network Engineering · Vienna · moments ago</small></div><button type="button">View insight <ArrowRight size={12} /></button></div>
-  </div>
+  return <MarketDashboardFrame active="Archive" eyebrow="HISTORICAL CONTEXT" title="Role archive" subtitle="Compare past listings and advertised salary ranges">
+    <div className="premium-archive-ui premium-panel dashboard-workspace-panel">
+      <PremiumBar label="LIVE + ARCHIVE" />
+      <div className="archive-ui-grid"><div className="archive-role"><span><FileArchive size={13} /> ARCHIVED ROLE</span><h3>Network Operations Engineer</h3><p>NTS · Vienna, Austria</p><div><span>POSTED<small>12 Aug</small></span><i /><span>ARCHIVED<small>28 Sep</small></span><strong>47 days online</strong></div></div><div className="salary-insight"><span>MEDIAN ADVERTISED SALARY</span><strong>€58,400</strong><small>Observed range €49k – €71k</small><div>{bars.map((height,index) => <i style={{height:`${height}%`}} key={index} />)}</div></div></div>
+      <div className="archive-alert"><span><Bell size={13} /><i /></span><div><strong>New comparable role detected</strong><small>Network Engineering · Vienna · moments ago</small></div><button type="button">View insight <ArrowRight size={12} /></button></div>
+    </div>
+  </MarketDashboardFrame>
 }
 
 function ChapterVisual({ type }: { type: typeof chapters[number]['visual'] }) {

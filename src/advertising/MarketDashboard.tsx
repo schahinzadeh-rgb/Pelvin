@@ -1,4 +1,4 @@
-import { useMemo, useState, type CSSProperties } from 'react'
+import { useMemo, useState, type CSSProperties, type ReactNode } from 'react'
 import { Bar } from '@visx/shape'
 import { scaleBand, scaleLinear } from '@visx/scale'
 import { geoMercator, geoPath } from 'd3-geo'
@@ -9,7 +9,7 @@ import world from 'world-atlas/countries-110m.json'
 import {
   Archive, BarChart3, Bell, Bot, BriefcaseBusiness, Building2, CalendarDays,
   ChevronDown, CircleHelp, Globe2, LayoutDashboard, Search, Settings2,
-  Sparkles, TrendingUp, Users,
+  Sparkles, TrendingUp,
 } from 'lucide-react'
 import { BrandMark } from '../components/Brand'
 
@@ -119,28 +119,48 @@ function AiMarketInsight() {
 
 const navItems = [
   { icon: LayoutDashboard, label: 'Overview' },
-  { icon: BarChart3, label: 'Market pulse', active: true },
+  { icon: BarChart3, label: 'Market pulse' },
   { icon: Building2, label: 'Companies' },
   { icon: BriefcaseBusiness, label: 'Roles' },
   { icon: Sparkles, label: 'AI signals' },
   { icon: Archive, label: 'Archive' },
 ]
 
-export function MarketDashboard() {
-  return <div className="market-dashboard-shell">
+function DashboardSidebar({ active }: { active: string }) {
+  return <>
     <aside className="market-dashboard-sidebar">
       <div className="dashboard-brand"><BrandMark /><button type="button" aria-label="Switch workspace"><ChevronDown size={14} /></button></div>
       <label className="dashboard-search"><Search size={15} /><span>Search market</span><kbd>/</kbd></label>
       <small>WORKSPACE</small>
-      <nav>{navItems.map(({ icon: Icon, label, active }) => <button className={active ? 'is-active' : ''} type="button" key={label}><Icon size={16} /><span>{label}</span>{active && <i />}</button>)}</nav>
+      <nav>{navItems.map(({ icon: Icon, label }) => <button className={active === label ? 'is-active' : ''} type="button" key={label}><Icon size={16} /><span>{label}</span>{active === label && <i />}</button>)}</nav>
       <small>MARKETS</small>
       <div className="market-switcher"><Globe2 size={16} /><div><strong>DACH</strong><span>Germany + Austria</span></div><ChevronDown size={13} /></div>
       <div className="sidebar-support"><CircleHelp size={15} /><div><strong>Need context?</strong><span>View methodology</span></div></div>
       <button className="sidebar-settings" type="button"><Settings2 size={16} /> Settings</button>
     </aside>
+  </>
+}
 
+type MarketDashboardFrameProps = {
+  active: string
+  eyebrow: string
+  title: string
+  subtitle: string
+  children: ReactNode
+}
+
+export function MarketDashboardFrame({ active, eyebrow, title, subtitle, children }: MarketDashboardFrameProps) {
+  return <div className={`market-dashboard-shell ${active === 'Market pulse' ? '' : 'is-workspace-view'}`}>
+    <DashboardSidebar active={active} />
     <div className="market-dashboard-main">
-      <header className="market-dashboard-topbar"><div><span>JOB MARKET INTELLIGENCE</span><h3>Market pulse</h3><p>Hiring activity across supported regions</p></div><div className="dashboard-actions"><button type="button"><CalendarDays size={14} /> Jan–Jun 2026</button><button type="button" aria-label="Notifications"><Bell size={15} /></button><div className="dashboard-avatar">PS</div></div></header>
+      <header className="market-dashboard-topbar"><div><span>{eyebrow}</span><h3>{title}</h3><p>{subtitle}</p></div><div className="dashboard-actions"><button type="button"><CalendarDays size={14} /> Jan–Jun 2026</button><button type="button" aria-label="Notifications"><Bell size={15} /></button><div className="dashboard-avatar">PS</div></div></header>
+      {children}
+    </div>
+  </div>
+}
+
+export function MarketDashboard() {
+  return <MarketDashboardFrame active="Market pulse" eyebrow="JOB MARKET INTELLIGENCE" title="Market pulse" subtitle="Hiring activity across supported regions">
       <div className="dashboard-kpis">
         <article className="is-primary"><span>Tracked roles</span><strong>48,219</strong><small><TrendingUp size={12} /> 8.4% this month</small></article>
         <article><span>Companies</span><strong>2,130</strong><small>Across 2 markets</small></article>
@@ -148,7 +168,5 @@ export function MarketDashboard() {
         <article><span>AI signals</span><strong>146</strong><small>31 high confidence</small></article>
       </div>
       <div className="market-dashboard-grid"><HiringBarChart /><EuropeSupportMap /><AiMarketInsight /></div>
-      <div className="dashboard-disclaimer"><Users size={13} /> Demo interface with illustrative market data. No live customer or company data.</div>
-    </div>
-  </div>
+  </MarketDashboardFrame>
 }
