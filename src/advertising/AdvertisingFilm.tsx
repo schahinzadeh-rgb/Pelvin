@@ -99,7 +99,7 @@ export function AdvertisingFilm() {
       <div className="story-spine" aria-hidden="true" />
       {stages.map((stage, index) => <article className={`story-stage ${index % 2 ? 'is-reversed' : ''}`} key={stage.number}>
         <div className="story-copy"><span>{stage.eyebrow}</span><h2>{stage.title}</h2><p>{stage.copy}</p></div>
-        <figure><StoryVisual type={stage.visual} /><figcaption>Illustrative product concept · no live customer data</figcaption></figure>
+        <figure><StoryVisual type={stage.visual} /></figure>
       </article>)}
     </section>
 

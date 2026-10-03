@@ -109,7 +109,7 @@ export function JobsAdvertisingFilm() {
       <div className="market-story-spine" aria-hidden="true" />
       {chapters.map((chapter, index) => <article className={`market-chapter ${index % 2 ? 'is-reversed' : ''}`} key={chapter.number}>
         <div className="market-chapter-copy"><span>{chapter.eyebrow}</span><h2>{chapter.title}</h2><p>{chapter.copy}</p></div>
-        <figure><ChapterVisual type={chapter.visual} /><figcaption>Illustrative product concept · public market signals · no live customer data</figcaption></figure>
+        <figure><ChapterVisual type={chapter.visual} /></figure>
       </article>)}
     </section>
 
