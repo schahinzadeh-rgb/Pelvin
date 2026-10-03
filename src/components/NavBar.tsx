@@ -83,7 +83,7 @@ export function NavBar() {
 
   return <header className="site-header" onMouseEnter={cancelClose} onMouseLeave={scheduleClose}>
     <div className="nav-shell">
-      <a href={isHomepage ? '#top' : '/'} className="logo-link" aria-label="Pelvin homepage" onClick={closeAll}><BrandMark /></a>
+      <a href="/" className="logo-link" aria-label="Pelvin homepage" onClick={closeAll}><BrandMark /></a>
       <nav className="desktop-nav" aria-label="Main navigation">
         <span
           className={`nav-hover-shape ${indicator.visible ? 'is-visible' : ''}`}
