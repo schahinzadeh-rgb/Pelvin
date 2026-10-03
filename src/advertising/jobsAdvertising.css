@@ -84,3 +84,19 @@
   .archive-ui-grid { grid-template-columns:1fr; }.archive-role { border-right:0;border-bottom:1px solid rgba(31,33,39,.08);padding:22px; }.salary-insight { padding:22px; }.archive-role>div { margin-top:23px; }.salary-insight>div { height:70px;margin-top:18px; }.archive-alert { grid-template-columns:auto 1fr;margin:0 14px 14px; }.archive-alert button { display:none; }
   .market-story-result { width:calc(100% - 16px);padding:56px 24px; }
 }
+
+/* Keep the product mockups readable and visually consistent with the site UI. */
+.market-dashboard-shell,
+.market-dashboard-shell *,
+.premium-panel,
+.premium-panel * {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.google-mark img { width:21px;height:21px;display:block; }
+.company-ui-mark {
+  border-color:rgba(31,33,39,.09);
+  background:rgba(255,255,255,.86);
+  box-shadow:0 12px 25px rgba(43,48,57,.08);
+}
+.company-ui-mark img { width:34px;height:34px;display:block; }

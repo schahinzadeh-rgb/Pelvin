@@ -7,7 +7,7 @@ import type { FeatureCollection, Geometry } from 'geojson'
 import type { GeometryCollection, Topology } from 'topojson-specification'
 import world from 'world-atlas/countries-110m.json'
 import {
-  Archive, BarChart3, Bell, Bot, BriefcaseBusiness, Building2, CalendarDays,
+  Archive, BarChart3, Bell, BriefcaseBusiness, Building2, CalendarDays,
   ChevronDown, CircleHelp, Globe2, LayoutDashboard, Search, Settings2,
   Sparkles, TrendingUp,
 } from 'lucide-react'
@@ -110,10 +110,9 @@ function EuropeSupportMap() {
 function AiMarketInsight() {
   return <aside className="market-data-card ai-market-card">
     <header><div><span><Sparkles size={13} /> AI DEMO ANALYSIS</span><h4>What changed?</h4></div><span className="confidence-pill">82% signal</span></header>
-    <div className="ai-company-row"><div className="google-mark">G</div><div><strong>Google</strong><span>Germany · Austria</span></div><b><TrendingUp size={13} /> +34%</b></div>
+    <div className="ai-company-row"><div className="google-mark"><img src="/assets/google-g.svg" alt="" /></div><div><strong>Google</strong><span>Germany · Austria</span></div><b><TrendingUp size={13} /> +34%</b></div>
     <p>Demo data indicates renewed hiring activity across IT infrastructure and HR roles.</p>
     <div className="ai-reasons"><span>Possible context</span><ul><li>Cloud and security roles reopened</li><li>Recruiting positions appeared after a quiet period</li><li>Activity is consistent across two supported markets</li></ul></div>
-    <footer><Bot size={14} /><span>Illustrative signal based on sample postings — not a confirmed company event.</span></footer>
   </aside>
 }
 

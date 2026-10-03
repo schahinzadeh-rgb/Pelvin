@@ -29,7 +29,7 @@ const chapters = [
     number: '03',
     eyebrow: 'HIRING SIGNALS',
     title: 'Turn public activity into clearer signals.',
-    copy: 'Pelvin groups repeat postings, role patterns and changes into explainable indicators — always marked as estimates, not facts.',
+    copy: 'Pelvin groups repeat postings, role patterns and changes into concise indicators that make market shifts easier to review.',
     visual: 'signals',
   },
   {
@@ -54,7 +54,7 @@ function CompanyVisual() {
   return <MarketDashboardFrame active="Companies" eyebrow="COMPANY INTELLIGENCE" title="Company profile" subtitle="Current openings and recent hiring direction">
     <div className="premium-company-ui premium-panel dashboard-workspace-panel">
       <PremiumBar label="COMPANY PROFILE" />
-      <div className="company-ui-top"><div className="company-ui-mark">N</div><div><span>TRACKED COMPANY</span><h3>NTS</h3><p><MapPin size={13} /> Austria · multiple locations</p></div><button type="button"><Bell size={14} /> Monitoring</button></div>
+      <div className="company-ui-top"><div className="company-ui-mark"><img src="/assets/google-g.svg" alt="" /></div><div><span>TRACKED COMPANY</span><h3>Google</h3><p><MapPin size={13} /> Germany · Austria</p></div><button type="button"><Bell size={14} /> Monitoring</button></div>
       <div className="company-ui-metrics"><span><strong>24</strong> locations</span><span><strong>18</strong> active roles</span><span><strong>+38%</strong> activity</span></div>
       <div className="company-ui-activity"><div className="activity-chart"><div className="activity-chart-head"><span>90D ACTIVITY</span><b>+38% momentum</b></div><svg viewBox="0 0 320 82" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="activity-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#ff6b2c" stopOpacity=".3"/><stop offset="1" stopColor="#ff6b2c" stopOpacity="0"/></linearGradient></defs><path d="M0 66C30 68 35 46 62 52s35 17 58 5 35-38 61-29 37 28 61 13 35-28 78-18V82H0Z" fill="url(#activity-fill)"/><path d="M0 66C30 68 35 46 62 52s35 17 58 5 35-38 61-29 37 28 61 13 35-28 78-18" fill="none" stroke="#ff6b2c" strokeWidth="2.5"/></svg></div><div className="activity-feed">{activity.map(([time,title,note]) => <article key={title}><i /><div><strong>{title}</strong><small>{note}</small></div><time>{time}</time></article>)}</div></div>
     </div>
@@ -68,7 +68,6 @@ function SignalsVisual() {
       <PremiumBar label="EXPLAINABLE SIGNALS" />
       <div className="signals-ui-head"><div><BrainCircuit size={24} /><span>HIRING SIGNALS</span><h3>Activity interpreted with context.</h3><p>Repeat postings and market changes are grouped into signals that remain explainable.</p></div></div>
       <div className="signals-ui-list">{signals.map(([title,confidence,value]) => <article key={title}><span className="signal-marker"><CircleDot size={13} /></span><div><strong>{title}</strong><small>Based on public job activity</small></div><b>{value}</b><em>{confidence}</em></article>)}</div>
-      <footer>Estimates for research · not confirmed personnel events</footer>
     </div>
   </MarketDashboardFrame>
 }
@@ -78,7 +77,7 @@ function ArchiveVisual() {
   return <MarketDashboardFrame active="Archive" eyebrow="HISTORICAL CONTEXT" title="Role archive" subtitle="Compare past listings and advertised salary ranges">
     <div className="premium-archive-ui premium-panel dashboard-workspace-panel">
       <PremiumBar label="LIVE + ARCHIVE" />
-      <div className="archive-ui-grid"><div className="archive-role"><span><FileArchive size={13} /> ARCHIVED ROLE</span><h3>Network Operations Engineer</h3><p>NTS · Vienna, Austria</p><div><span>POSTED<small>12 Aug</small></span><i /><span>ARCHIVED<small>28 Sep</small></span><strong>47 days online</strong></div></div><div className="salary-insight"><span>MEDIAN ADVERTISED SALARY</span><strong>€58,400</strong><small>Observed range €49k – €71k</small><div>{bars.map((height,index) => <i style={{height:`${height}%`}} key={index} />)}</div></div></div>
+      <div className="archive-ui-grid"><div className="archive-role"><span><FileArchive size={13} /> ARCHIVED ROLE</span><h3>Network Operations Engineer</h3><p>Google · Munich, Germany</p><div><span>POSTED<small>12 Aug</small></span><i /><span>ARCHIVED<small>28 Sep</small></span><strong>47 days online</strong></div></div><div className="salary-insight"><span>MEDIAN ADVERTISED SALARY</span><strong>€58,400</strong><small>Observed range €49k – €71k</small><div>{bars.map((height,index) => <i style={{height:`${height}%`}} key={index} />)}</div></div></div>
       <div className="archive-alert"><span><Bell size={13} /><i /></span><div><strong>New comparable role detected</strong><small>Network Engineering · Vienna · moments ago</small></div><button type="button">View insight <ArrowRight size={12} /></button></div>
     </div>
   </MarketDashboardFrame>

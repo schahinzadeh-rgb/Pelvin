@@ -121,3 +121,9 @@
   .ready-ui { grid-template-columns:1fr;grid-template-rows:50px auto auto 50px; }.readiness-ring { min-height:190px; }.ready-checks { padding-top:5px; }.ready-footer { grid-column:1; }
   .onboarding-story-result { width:calc(100% - 16px);padding:54px 24px; }
 }
+
+/* The embedded onboarding interface uses standard UI typography. */
+.story-ui,
+.story-ui * {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
