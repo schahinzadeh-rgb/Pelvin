@@ -1,11 +1,12 @@
 import { useEffect } from 'react'
 import {
-  ArrowRight, Bell, BrainCircuit, Building2, Check, CircleDot,
-  FileArchive, MapPin, Radar, Search, Sparkles, TrendingUp,
+  ArrowRight, Bell, BrainCircuit, CircleDot,
+  FileArchive, MapPin, Radar, Sparkles,
 } from 'lucide-react'
 import { BrandMark } from '../components/Brand'
 import { NavBar } from '../components/NavBar'
 import { StoryVisualFrame } from './StoryVisualFrame'
+import { MarketDashboard } from './MarketDashboard'
 import './advertising.css'
 import './jobsAdvertising.css'
 
@@ -45,11 +46,7 @@ function PremiumBar({ label }: { label: string }) {
 }
 
 function MarketVisual() {
-  return <div className="premium-market-ui premium-panel">
-    <PremiumBar label="AUSTRIA · CONCEPT DATA" />
-    <div className="market-ui-head"><div><span>AUSTRIAN JOB MARKET</span><h3>Market pulse</h3></div><div className="market-ui-search"><Search size={13} /> IT infrastructure</div></div>
-    <div className="market-ui-body"><div className="market-ui-map"><span>VIENNA<i /></span><span>LINZ<i /></span><span>GRAZ<i /></span><span>SALZBURG<i /></span><div className="map-orbit orbit-a" /><div className="map-orbit orbit-b" /></div><div className="market-ui-stats"><article><span>ACTIVE ROLES</span><strong>48,219</strong><small><TrendingUp size={11} /> +8.4% this month</small></article><article><span>COMPANIES</span><strong>2,130</strong><small>Across Austria</small></article><article><span>NEW THIS WEEK</span><strong>1,284</strong><small>Recently detected</small></article></div></div>
-  </div>
+  return <MarketDashboard />
 }
 
 function CompanyVisual() {
@@ -67,7 +64,7 @@ function SignalsVisual() {
   return <div className="premium-signals-ui premium-panel">
     <PremiumBar label="EXPLAINABLE SIGNALS" />
     <div className="signals-ui-head"><div><BrainCircuit size={20} /><span>HIRING SIGNALS</span><h3>Activity interpreted<br />with context.</h3></div><div className="signal-score"><span>ACTIVITY SCORE</span><strong>82</strong><small>Elevated</small></div></div>
-    <div className="signals-ui-list">{signals.map(([title,confidence,value], index) => <article key={title}><span className={`signal-rank rank-${index + 1}`}>{String(index + 1).padStart(2,'0')}</span><div><strong>{title}</strong><small><CircleDot size={9} /> Based on public job activity</small></div><b>{value}</b><em>{confidence}</em></article>)}</div>
+    <div className="signals-ui-list">{signals.map(([title,confidence,value]) => <article key={title}><div><strong>{title}</strong><small><CircleDot size={9} /> Based on public job activity</small></div><b>{value}</b><em>{confidence}</em></article>)}</div>
     <footer>Estimates for research · not confirmed personnel events</footer>
   </div>
 }
@@ -98,7 +95,7 @@ export function JobsAdvertisingFilm() {
     <NavBar />
     <section className="market-story-hero">
       <div className="market-story-wordmark"><BrandMark /><span>HIRING INTELLIGENCE</span></div>
-      <span><Sparkles size={12} /> AUSTRIAN JOB MARKET · PRODUCT CONCEPT</span>
+      <span><Sparkles size={12} /> GERMANY + AUSTRIA · PRODUCT CONCEPT</span>
       <h1>Understand hiring<br />before the market does.</h1>
       <p>Current roles, company activity, explainable signals and historical context — organized into one focused research workflow.</p>
       <a href="#market-story">Explore market intelligence <ArrowRight size={15} /></a>
