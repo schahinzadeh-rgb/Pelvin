@@ -180,13 +180,13 @@ button { color: inherit; }
 .schematic-card:nth-child(2n) { border-right: 0; }
 .schematic-card:nth-last-child(-n+2) { border-bottom: 0; }
 .diagram { position: relative; z-index: 2; height: 250px; overflow: hidden; border-bottom: 1px solid var(--line); }
-.diagram svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.diagram > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .diagram .flow-line { animation: dashFlow 14s linear infinite; }
 .diagram .accent-flow { animation-duration: 9s; }
 .mini-server { animation: endpointPulse 5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
 .mini-server:nth-of-type(2n) { animation-delay: -1.7s; }.mini-server:nth-of-type(3n) { animation-delay: -3.1s; }
 .node-icon { position: absolute; left: 50%; top: 50%; z-index: 3; width: 82px; height: 82px; display: grid; place-items: center; transform: translate(-50%, -50%); color: var(--orange); border: 1.5px solid var(--orange); border-radius: 10px; background: var(--bg); box-shadow: 0 0 0 rgba(246,130,31,0); animation: nodeBreathe 4.8s ease-in-out infinite; transition: border-color 220ms ease, color 220ms ease; }
-.node-icon.compact { width: auto; height: auto; border: 0; background: transparent; }
+.node-icon.compact { width: 64px; height: 54px; border: 1px solid rgba(255,94,31,.72); border-radius: 8px; background: #191817; box-shadow: 0 0 24px rgba(255,94,31,.08); }
 .schematic-card:hover .node-icon { border-color: #ff9a58; color: #ff9a58; }
 .port { position: absolute; z-index: 4; width: 11px; height: 11px; border: 1px solid var(--orange); background: var(--bg); border-radius: 1px; animation: portBlink 3.8s ease-in-out infinite; }
 .port-right { animation-delay: -1.2s; }.port-bottom { animation-delay: -2.4s; }
