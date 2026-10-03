@@ -98,9 +98,8 @@ export function AdvertisingFilm() {
     <section className="onboarding-story" id="story" aria-label="Pelvin onboarding workflow">
       <div className="story-spine" aria-hidden="true" />
       {stages.map((stage, index) => <article className={`story-stage ${index % 2 ? 'is-reversed' : ''}`} key={stage.number}>
-        <div className="story-copy"><span>{stage.eyebrow}</span><h2>{stage.title}</h2><p>{stage.copy}</p><small>{stage.number} / 03</small></div>
+        <div className="story-copy"><span>{stage.eyebrow}</span><h2>{stage.title}</h2><p>{stage.copy}</p></div>
         <figure><StoryVisual type={stage.visual} /><figcaption>Illustrative product concept · no live customer data</figcaption></figure>
-        <i className="story-node">{stage.number}</i>
       </article>)}
     </section>
 

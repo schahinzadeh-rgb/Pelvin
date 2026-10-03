@@ -108,9 +108,8 @@ export function JobsAdvertisingFilm() {
     <section className="market-story" id="market-story" aria-label="Pelvin Hiring Intelligence workflow">
       <div className="market-story-spine" aria-hidden="true" />
       {chapters.map((chapter, index) => <article className={`market-chapter ${index % 2 ? 'is-reversed' : ''}`} key={chapter.number}>
-        <div className="market-chapter-copy"><span>{chapter.eyebrow}</span><h2>{chapter.title}</h2><p>{chapter.copy}</p><small>{chapter.number} / 04</small></div>
+        <div className="market-chapter-copy"><span>{chapter.eyebrow}</span><h2>{chapter.title}</h2><p>{chapter.copy}</p></div>
         <figure><ChapterVisual type={chapter.visual} /><figcaption>Illustrative product concept · public market signals · no live customer data</figcaption></figure>
-        <i className="market-chapter-node">{chapter.number}</i>
       </article>)}
     </section>
 
