@@ -20,8 +20,6 @@
 
 /* Shared embedded visual treatment */
 .story-visual-frame {
-  --mesh-main: #ff3b1f;
-  --mesh-hot: #ff8a24;
   position: relative;
   min-height: 480px;
   display: grid;
@@ -34,30 +32,6 @@
   box-shadow: 0 34px 80px rgba(0,0,0,.46);
   isolation: isolate;
 }
-
-.story-visual-frame.tone-violet { --mesh-main:#7e4dff; --mesh-hot:#ff5b30; }
-.story-visual-frame.tone-green { --mesh-main:#38d7a5; --mesh-hot:#ff6b28; }
-.story-visual-frame::after {
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:-3;
-  opacity:.34;
-  background-image:radial-gradient(circle,rgba(255,255,255,.16) 1px,transparent 1.35px);
-  background-size:8px 8px;
-}
-.halftone-wave {
-  position:absolute;
-  z-index:-2;
-  border-radius:48% 52% 62% 38% / 48% 36% 64% 52%;
-  background-image:radial-gradient(circle,var(--mesh-main) 2px,transparent 2.5px);
-  background-size:8px 8px;
-  filter:drop-shadow(0 0 18px color-mix(in srgb,var(--mesh-main) 22%,transparent));
-  opacity:.9;
-}
-.halftone-wave-one { width:125%;height:48%;left:-27%;top:3%;transform:rotate(9deg); }
-.halftone-wave-two { width:115%;height:41%;right:-35%;top:34%;transform:rotate(-13deg);background-image:radial-gradient(circle,var(--mesh-hot) 1.9px,transparent 2.5px);opacity:.82; }
-.halftone-wave-three { width:105%;height:37%;left:-16%;bottom:-10%;transform:rotate(18deg);opacity:.28; }
 
 .onboarding-story-page { position:relative; z-index:1; }
 .onboarding-story-hero {
@@ -145,7 +119,7 @@
 @media(max-width:600px) {
   .onboarding-story-hero { min-height:570px;padding-inline:22px; }.onboarding-story-hero h1 { font-size:45px; }.onboarding-story-hero p { font-size:14px; }
   .onboarding-story { width:calc(100% - 16px); }.story-stage,.story-stage.is-reversed { padding-right:14px; }.story-copy h2 { font-size:37px; }
-  .story-visual-frame { min-height:440px;padding:25px 14px; }.halftone-wave { background-size:7px 7px; }.story-ui { min-height:330px;border-radius:13px; }
+  .story-visual-frame { min-height:440px;padding:25px 14px; }.story-ui { min-height:330px;border-radius:13px; }
   .profile-ui-body { grid-template-columns:1fr; }.profile-ui-body aside { display:none; }.profile-fields { padding:18px; }
   .ready-ui { grid-template-columns:1fr;grid-template-rows:50px auto auto 50px; }.readiness-ring { min-height:190px; }.ready-checks { padding-top:5px; }.ready-footer { grid-column:1; }
   .onboarding-story-result { width:calc(100% - 16px);padding:54px 24px; }
