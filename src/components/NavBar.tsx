@@ -124,7 +124,7 @@ export function NavBar() {
             </div>)}
           </div>
           <footer className="mega-footer">
-            <a className="mega-footer-primary" href={menu.key === 'demo' ? '/werbung/' : resolveHref('#/produktgespraech')} onClick={closeAll}>{menu.key === 'demo' ? 'Watch HR demo' : 'Product conversation'} <ArrowRight size={13} /></a>
+            <a className="mega-footer-primary" href={menu.key === 'demo' ? '/werbung/' : resolveHref('#/produktgespraech')} onClick={closeAll}>{menu.key === 'demo' ? 'Explore HR workflow' : 'Product conversation'} <ArrowRight size={13} /></a>
             <div><a href={resolveHref('#product')} onClick={closeAll}>Product</a><a href={resolveHref('#security')} onClick={closeAll}>Security</a><a href={resolveHref('#/kontakt')} onClick={closeAll}>Contact</a></div>
           </footer>
         </section>)}
