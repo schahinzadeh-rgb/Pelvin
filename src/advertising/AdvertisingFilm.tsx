@@ -4,6 +4,7 @@ import {
   Laptop, LockKeyhole, PackageCheck, ShieldCheck, Sparkles, Users,
 } from 'lucide-react'
 import { NavBar } from '../components/NavBar'
+import { StoryVisualFrame } from './StoryVisualFrame'
 import './advertising.css'
 
 const stages = [
@@ -35,7 +36,7 @@ function StoryBar({ label }: { label: string }) {
 }
 
 function ProfileVisual() {
-  return <div className="story-ui profile-ui">
+  return <StoryVisualFrame><div className="story-ui profile-ui">
     <StoryBar label="NEW EMPLOYEE · DRAFT" />
     <div className="profile-ui-body">
       <aside><div className="profile-avatar"><Users size={24} /></div><span>NEW HIRE</span><strong>Sarah Miller</strong><small>Marketing Manager</small></aside>
@@ -47,7 +48,7 @@ function ProfileVisual() {
       </div>
     </div>
     <div className="story-ui-note"><CheckCircle2 size={14} /> Core information captured</div>
-  </div>
+  </div></StoryVisualFrame>
 }
 
 function TasksVisual() {
@@ -56,20 +57,20 @@ function TasksVisual() {
     { icon: LockKeyhole, label: 'Create access package', owner: 'IT operations', state: 'OPEN' },
     { icon: ClipboardCheck, label: 'Approve applications', owner: 'Manager', state: 'APPROVED' },
   ]
-  return <div className="story-ui tasks-ui">
+  return <StoryVisualFrame tone="violet"><div className="story-ui tasks-ui">
     <StoryBar label="ONBOARDING · TASKS" />
     <div className="tasks-summary"><div><span>Sarah Miller</span><strong>6 of 9 steps coordinated</strong></div><b>67%</b></div>
     <div className="task-rows">{tasks.map(({ icon: Icon, label, owner, state }) => <article key={label}><span><Icon size={16} /></span><div><strong>{label}</strong><small>{owner}</small></div><b className={state === 'APPROVED' ? 'is-done' : ''}>{state}</b></article>)}</div>
-  </div>
+  </div></StoryVisualFrame>
 }
 
 function ReadyVisual() {
-  return <div className="story-ui ready-ui">
+  return <StoryVisualFrame tone="green"><div className="story-ui ready-ui">
     <StoryBar label="READINESS · OVERVIEW" />
     <div className="readiness-ring"><div><strong>8/9</strong><span>steps ready</span></div></div>
     <div className="ready-checks"><span><Check size={13} /> Employee profile</span><span><Check size={13} /> Equipment assigned</span><span><Check size={13} /> Standard access</span><span className="is-open">1 manager approval open</span></div>
     <div className="ready-footer"><ShieldCheck size={15} /> Status visible before the start date</div>
-  </div>
+  </div></StoryVisualFrame>
 }
 
 function StoryVisual({ type }: { type: typeof stages[number]['visual'] }) {

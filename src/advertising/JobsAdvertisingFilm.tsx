@@ -5,6 +5,7 @@ import {
 } from 'lucide-react'
 import { BrandMark } from '../components/Brand'
 import { NavBar } from '../components/NavBar'
+import { StoryVisualFrame } from './StoryVisualFrame'
 import './advertising.css'
 import './jobsAdvertising.css'
 
@@ -81,10 +82,9 @@ function ArchiveVisual() {
 }
 
 function ChapterVisual({ type }: { type: typeof chapters[number]['visual'] }) {
-  if (type === 'market') return <MarketVisual />
-  if (type === 'company') return <CompanyVisual />
-  if (type === 'signals') return <SignalsVisual />
-  return <ArchiveVisual />
+  const panel = type === 'market' ? <MarketVisual /> : type === 'company' ? <CompanyVisual /> : type === 'signals' ? <SignalsVisual /> : <ArchiveVisual />
+  const tone = type === 'signals' ? 'green' : type === 'company' ? 'violet' : 'orange'
+  return <StoryVisualFrame tone={tone}>{panel}</StoryVisualFrame>
 }
 
 export function JobsAdvertisingFilm() {
