@@ -87,7 +87,6 @@ function Diagram({ type, Icon }: { type: Card['type']; Icon: LucideIcon }) {
         {type === 'protect' && (
           <>
             <path className="flow-line accent-flow" d="M0 48h90c0 47 26 76 101 76M0 202h90c0-47 26-76 101-76M309 125h78" fill="none" stroke="#c9a900" strokeDasharray="8 5" />
-            <path className="flow-line" d="M387 125h113" stroke="#3f3f3f" strokeDasharray="8 5" />
             <rect x="386" y="57" width="100" height="136" rx="9" fill="none" stroke="#505050" />
             <path d="M386 84h100M404 106h63v52h-63zM404 170h63M404 181h63" fill="none" stroke="#505050" />
             <circle cx="401" cy="70" r="3" fill="#5d5d5d" /><circle cx="412" cy="70" r="3" fill="#5d5d5d" />
