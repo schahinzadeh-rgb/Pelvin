@@ -117,12 +117,13 @@ function ProcessPage({ type }: { type: keyof typeof processPages }) {
 
 function LegalPage({ type }: { type: 'impressum' | 'datenschutz' | 'kontakt' }) {
   const content = type === 'impressum' ? { title: 'Legal notice', intro: 'Responsible information for this website and Pelvin’s current project status.', blocks: [['Provider', 'Pelvin\nDigital product initiative by Schahin Samadzadeh'], ['Responsible contact', `Schahin Samadzadeh\nEmail: ${FOUNDER_EMAIL}\nWeb: https://pelvin.net`], ['Project status', 'Pelvin is currently in product development. No existing customers, production integrations or live usage figures are represented. Business details will be updated once the company formation is complete.']] }
-    : type === 'datenschutz' ? { title: 'Privacy', intro: 'Information about which data may be processed when you visit this website or contact us.', blocks: [['Website hosting', 'This website is hosted through GitHub Pages. Technically necessary connection data such as IP address, access time and requested resource may be processed when the site is accessed.'], ['Cookies and tracking', 'Pelvin currently uses no first-party analytics, marketing or tracking cookies on this website.'], ['Contact inquiries', 'The inquiry form opens your local email client. Information is only transferred to Pelvin when you send the email and is used exclusively to respond to your request.'], ['Privacy contact', `Questions about privacy: ${CONTACT_EMAIL}`]] }
+    : type === 'datenschutz' ? { title: 'Privacy', intro: 'Information about which data may be processed when you visit this website or contact us.', blocks: [['Website hosting', 'This website is hosted through GitHub Pages. Technically necessary connection data such as IP address, access time and requested resource may be processed when the site is accessed.'], ['Cookies and tracking', 'Pelvin currently uses no first-party analytics, marketing or tracking cookies on this website.'], ['Contact inquiries', 'When you submit the inquiry form, the information you enter is transmitted through the FormSubmit service and delivered to Pelvin by email. It is used exclusively to respond to your request. You can alternatively contact Pelvin directly by email.'], ['Privacy contact', `Questions about privacy: ${CONTACT_EMAIL}`]] }
       : { title: 'Contact', intro: 'The right contact for product questions, business conversations or a direct exchange with the founder.', blocks: [['General inquiries', `${CONTACT_EMAIL}\nFor general questions about the website and Pelvin.`], ['Business & partnerships', `${BUSINESS_EMAIL}\nFor product conversations, potential collaboration and business topics.`], ['Founder contact', `${FOUNDER_EMAIL}\nDirect contact with Schahin Samadzadeh.`], ['Current stage', 'Pelvin is currently developing Employee Lifecycle workflows and Hiring Intelligence research. Conversations provide a transparent presentation of the current product concept.']] }
   return <div className="legal-page"><NavBar /><main><span className="orange-tag">PELVIN</span><h1>{content.title}</h1><p className="legal-intro">{content.intro}</p><div>{content.blocks.map(([heading, copy]) => <section key={heading}><h2>{heading}</h2><p>{copy}</p></section>)}</div>{type === 'kontakt' && <a className="legal-cta" href="#/produktgespraech">Request a product conversation <ArrowRight size={16} /></a>}</main></div>
 }
 
 function DemoRequestModal({ onClose }: { onClose: () => void }) {
+  const [submissionState, setSubmissionState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   useEffect(() => {
     const previousOverflow = document.body.style.overflow
     const closeOnEscape = (event: KeyboardEvent) => { if (event.key === 'Escape') onClose() }
@@ -134,16 +135,34 @@ function DemoRequestModal({ onClose }: { onClose: () => void }) {
     }
   }, [onClose])
 
-  function submitRequest(event: FormEvent<HTMLFormElement>) {
+  async function submitRequest(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    const data = new FormData(event.currentTarget)
-    const body = [
-      'Hello Schahin,', '', 'I am interested in a Pelvin product conversation.', '',
-      `Name: ${data.get('name')}`, `Company: ${data.get('company')}`,
-      `Business email: ${data.get('email')}`, `Role: ${data.get('role')}`,
-      '', `Message: ${data.get('message') || 'No additional message.'}`,
-    ].join('\n')
-    window.location.href = `mailto:${BUSINESS_EMAIL}?subject=${encodeURIComponent('Pelvin product conversation')}&body=${encodeURIComponent(body)}`
+    const form = event.currentTarget
+    const data = new FormData(form)
+    if (data.get('_honey')) return
+    setSubmissionState('submitting')
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${BUSINESS_EMAIL}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name: data.get('name'),
+          company: data.get('company'),
+          email: data.get('email'),
+          role: data.get('role'),
+          message: data.get('message') || 'No additional message.',
+          _subject: 'New Pelvin product conversation request',
+          _template: 'table',
+          _captcha: 'false',
+        }),
+      })
+      const result = await response.json() as { success?: boolean | string }
+      if (!response.ok || result.success === false || result.success === 'false') throw new Error('Submission failed')
+      form.reset()
+      setSubmissionState('success')
+    } catch {
+      setSubmissionState('error')
+    }
   }
 
   return <div className="demo-modal-backdrop" onMouseDown={(event) => { if (event.currentTarget === event.target) onClose() }}>
@@ -151,7 +170,7 @@ function DemoRequestModal({ onClose }: { onClose: () => void }) {
       <header className="demo-modal-header"><BrandMark /><button className="demo-modal-close" type="button" onClick={onClose} aria-label="Close product conversation"><X size={18} /></button></header>
       <div className="demo-modal-body">
         <div className="demo-request-copy"><span className="orange-tag">PERSONAL PRODUCT CONVERSATION</span><h1 id="demo-modal-title">Meet Pelvin.</h1><p>We offer a transparent look at the product idea and development stage, then discuss which workflows are most relevant to your team.</p><div className="request-benefits"><span><CheckCircle2 size={16} /> Explore the product concept</span><span><CheckCircle2 size={16} /> Discuss your current processes</span><span><CheckCircle2 size={16} /> Get an honest view of the current stage</span></div><a href={`mailto:${BUSINESS_EMAIL}`}><Mail size={16} /> {BUSINESS_EMAIL}</a></div>
-        <form onSubmit={submitRequest}><label>Name<input name="name" autoComplete="name" required /></label><label>Company<input name="company" autoComplete="organization" required /></label><label>Business email<input name="email" type="email" autoComplete="email" required /></label><label>Role<input name="role" placeholder="e.g. IT Operations Lead" required /></label><label className="full-field">What would you like to discuss?<textarea name="message" rows={5} placeholder="Optional: team size, current process or desired integrations" /></label><button type="submit">Prepare inquiry <Send size={16} /></button><small>Submitting opens your email client. No form data is stored on this website.</small></form>
+        <form onSubmit={submitRequest}><input className="honeypot-field" name="_honey" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" /><label>Name<input name="name" autoComplete="name" required /></label><label>Company<input name="company" autoComplete="organization" required /></label><label>Business email<input name="email" type="email" autoComplete="email" required /></label><label>Role<input name="role" placeholder="e.g. IT Operations Lead" required /></label><label className="full-field">What would you like to discuss?<textarea name="message" rows={5} placeholder="Optional: team size, current process or desired integrations" /></label><button type="submit" disabled={submissionState === 'submitting'}>{submissionState === 'submitting' ? 'Sending inquiry…' : 'Send inquiry'} <Send size={16} /></button>{submissionState === 'success' && <p className="form-status is-success" role="status"><CheckCircle2 size={15} /> Thank you — your inquiry was sent successfully.</p>}{submissionState === 'error' && <p className="form-status is-error" role="alert">The inquiry could not be sent. Please email <a href={`mailto:${BUSINESS_EMAIL}`}>{BUSINESS_EMAIL}</a>.</p>}<small>Your inquiry is transmitted securely through FormSubmit and delivered to Pelvin by email.</small></form>
       </div>
     </section>
   </div>

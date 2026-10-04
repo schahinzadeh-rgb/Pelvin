@@ -301,7 +301,12 @@ footer { background: var(--bg); }
 .demo-modal .full-field, .demo-modal form button, .demo-modal form small { grid-column: 1 / -1; }
 .demo-modal form button { min-height: 43px; display: flex; align-items: center; justify-content: center; gap: 8px; border: 0; border-radius: 6px; background: var(--orange); color: #17110d; font-size:12px; font-weight: 700; cursor: pointer; transition: background 180ms ease; }
 .demo-modal form button:hover { background:#ff8c45; }
+.demo-modal form button:disabled { cursor:wait;opacity:.68; }
 .demo-modal form small { color: #6f6f6f; font-size: 8px; line-height: 1.45; text-align: center; }
+.demo-modal .honeypot-field { position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important; }
+.demo-modal .form-status { grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:7px;margin:0;padding:10px 12px;border-radius:6px;font-size:10px;font-weight:650;text-align:center; }
+.demo-modal .form-status.is-success { border:1px solid rgba(38,170,114,.25);background:rgba(38,170,114,.08);color:#7fd4ad; }
+.demo-modal .form-status.is-error { border:1px solid rgba(246,130,31,.28);background:rgba(246,130,31,.08);color:#e7b18d; }.demo-modal .form-status a { color:var(--orange); }
 
 @keyframes dashFlow { to { stroke-dashoffset: -120; } }
 @keyframes endpointPulse { 0%, 100% { opacity: .72; } 50% { opacity: 1; } }
