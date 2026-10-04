@@ -78,9 +78,9 @@ function Diagram({ type, Icon }: { type: Card['type']; Icon: LucideIcon }) {
         )}
         {type === 'govern' && (
           <>
-            <path className="flow-line accent-flow" d="M0 74h193M307 74h193M250 0v43M250 145v105" stroke="#b79600" strokeDasharray="7 5" />
-            <path className="flow-line" d="M64 74v126M436 74v126M250 145v55" stroke="#3f3f3f" strokeDasharray="7 5" />
-            <MiniServer x={64} y={74} kind="bot" /><MiniServer x={436} y={74} kind="bot" />
+            <path className="flow-line accent-flow" d="M0 125h41M87 125h106M307 125h106M459 125h41M250 0v82M250 168v14M250 226v24" stroke="#b79600" strokeDasharray="7 5" />
+            <path className="flow-line" d="M64 147v35M64 226v24M436 147v35M436 226v24" stroke="#3f3f3f" strokeDasharray="7 5" />
+            <MiniServer x={64} y={125} kind="bot" /><MiniServer x={436} y={125} kind="bot" />
             <MiniServer x={64} y={204} /><MiniServer x={250} y={204} kind="bot" /><MiniServer x={436} y={204} />
           </>
         )}
