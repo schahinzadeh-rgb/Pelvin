@@ -54,11 +54,11 @@ const processPages = {
 } as const
 
 const faqs = [
-  ['What is Pelvin?', 'Pelvin is a B2B software product in development that brings employee lifecycle IT processes into one shared workspace.'],
-  ['Which processes does Pelvin cover?', 'The product focuses on onboarding, role changes and offboarding — including tasks, approvals, hardware, applications and ownership.'],
+  ['What is Pelvin?', 'Pelvin is a B2B workforce operations product in development. It combines employee lifecycle workflows with hiring-intelligence research in one focused platform for HR and IT teams.'],
+  ['Which capabilities does Pelvin cover?', 'Employee Lifecycle coordinates onboarding, role changes and offboarding. Hiring Intelligence organizes public job-market activity, company profiles and explainable hiring signals for Germany and Austria.'],
   ['What is the current product status?', 'Pelvin is currently in product development. In personal conversations, we present the concept, explain the current stage and gather professional feedback.'],
   ['Which integrations are planned?', 'Microsoft Entra ID, Microsoft 365 and Intune are part of the planned integration strategy. The technical implementation will be evaluated step by step as the product develops.'],
-  ['Who is Pelvin for?', 'Pelvin is designed for growing companies and teams across HR, IT support, hardware logistics, application ownership and IT operations.'],
+  ['Who is Pelvin for?', 'Pelvin is designed for growing companies and teams across HR, recruiting, workforce planning, IT support, hardware logistics, application ownership and IT operations.'],
 ]
 
 function SectionMarker({ number, name }: { number: string; name: string }) {
@@ -66,7 +66,7 @@ function SectionMarker({ number, name }: { number: string; name: string }) {
 }
 
 function Hero() {
-  return <section className="hero" id="top"><div className="hero-glow" aria-hidden="true" /><div className="hero-content"><span className="outline-badge"><Sparkles size={13} /> WORKFORCE IT OPERATIONS</span><h1>Every employee IT process. One place.</h1><p>Pelvin connects HR, managers and IT in one clear workflow — from a person’s first day to controlled offboarding.</p><div className="hero-actions" id="demo"><a className="hero-primary" href="#/produktgespraech">Request a product conversation <ArrowRight size={17} /></a><a href="#product">Explore the product</a></div><div className="demo-disclaimer"><i /> B2B SOFTWARE IN DEVELOPMENT · PERSONAL CONVERSATION</div></div><div className="scroll-cue"><span /> EXPLORE THE PRODUCT</div></section>
+  return <section className="hero" id="top"><div className="hero-glow" aria-hidden="true" /><div className="hero-content"><span className="outline-badge"><Sparkles size={13} /> WORKFORCE OPERATIONS</span><h1>Workforce operations. One clear platform.</h1><p>Pelvin brings employee lifecycle workflows and hiring intelligence into one focused product for HR and IT teams.</p><div className="hero-actions" id="demo"><a className="hero-primary" href="#/produktgespraech">Request a product conversation <ArrowRight size={17} /></a><a href="#product">Explore the product</a></div><div className="demo-disclaimer"><i /> B2B SOFTWARE IN DEVELOPMENT · PERSONAL CONVERSATION</div></div><div className="scroll-cue"><span /> EXPLORE THE PRODUCT</div></section>
 }
 
 function ProductOverview() {
@@ -74,7 +74,7 @@ function ProductOverview() {
 }
 
 function HiringIntelligenceTeaser() {
-  return <section className="section-frame hiring-teaser" id="hiring-intelligence"><div><span className="orange-tag">HIRING INTELLIGENCE · PRODUCT STUDY</span><h2>See how companies are hiring.</h2><p>Explore Austrian job-market activity, company profiles and hiring signals in one focused product study.</p></div><a href="/werbung-jobs/">View the job market demo <ArrowRight size={16} /></a></section>
+  return <section className="section-frame hiring-teaser" id="hiring-intelligence"><div><span className="orange-tag">HIRING INTELLIGENCE · PRODUCT AREA</span><h2>See how companies are hiring.</h2><p>Explore public job-market activity, company profiles and explainable hiring signals across Germany and Austria.</p></div><a href="/werbung-jobs/">View the job market demo <ArrowRight size={16} /></a></section>
 }
 
 function HowItWorks() {
@@ -96,7 +96,7 @@ function CTA() {
 }
 
 function Footer() {
-  return <footer id="about"><div className="footer-top"><div className="footer-brand"><BrandMark /><p>Pelvin is a B2B software initiative for clear employee lifecycle IT operations.</p></div><div className="footer-group footer-email-group"><h3>Email</h3><a className="footer-primary-email" href={`mailto:${FOUNDER_EMAIL}`}>{FOUNDER_EMAIL}</a><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a><a href={`mailto:${BUSINESS_EMAIL}`}>{BUSINESS_EMAIL}</a></div><div className="footer-group"><h3>Legal</h3><a href="#/impressum">Legal notice</a><a href="#/datenschutz">Privacy</a></div></div><div className="footer-bottom"><span>© 2026 Pelvin</span></div></footer>
+  return <footer id="about"><div className="footer-top"><div className="footer-brand"><BrandMark /><p>Pelvin is a B2B workforce operations product in development for employee lifecycle workflows and hiring intelligence.</p></div><div className="footer-group footer-email-group"><h3>Email</h3><a className="footer-primary-email" href={`mailto:${FOUNDER_EMAIL}`}>{FOUNDER_EMAIL}</a><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a><a href={`mailto:${BUSINESS_EMAIL}`}>{BUSINESS_EMAIL}</a></div><div className="footer-group"><h3>Legal</h3><a href="#/impressum">Legal notice</a><a href="#/datenschutz">Privacy</a></div></div><div className="footer-bottom"><span>© 2026 Pelvin</span></div></footer>
 }
 
 function PublicSite() { return <><NavBar /><main><Hero /><div className="industrial-shell"><ProductOverview /><HiringIntelligenceTeaser /><HowItWorks /><SchematicGrid /><SecurityBand /><FAQ /></div><CTA /></main><Footer /></> }
@@ -118,7 +118,7 @@ function ProcessPage({ type }: { type: keyof typeof processPages }) {
 function LegalPage({ type }: { type: 'impressum' | 'datenschutz' | 'kontakt' }) {
   const content = type === 'impressum' ? { title: 'Legal notice', intro: 'Responsible information for this website and Pelvin’s current project status.', blocks: [['Provider', 'Pelvin\nDigital product initiative by Schahin Samadzadeh'], ['Responsible contact', `Schahin Samadzadeh\nEmail: ${FOUNDER_EMAIL}\nWeb: https://pelvin.net`], ['Project status', 'Pelvin is currently in product development. No existing customers, production integrations or live usage figures are represented. Business details will be updated once the company formation is complete.']] }
     : type === 'datenschutz' ? { title: 'Privacy', intro: 'Information about which data may be processed when you visit this website or contact us.', blocks: [['Website hosting', 'This website is hosted through GitHub Pages. Technically necessary connection data such as IP address, access time and requested resource may be processed when the site is accessed.'], ['Cookies and tracking', 'Pelvin currently uses no first-party analytics, marketing or tracking cookies on this website.'], ['Contact inquiries', 'The inquiry form opens your local email client. Information is only transferred to Pelvin when you send the email and is used exclusively to respond to your request.'], ['Privacy contact', `Questions about privacy: ${CONTACT_EMAIL}`]] }
-      : { title: 'Contact', intro: 'The right contact for product questions, business conversations or a direct exchange with the founder.', blocks: [['General inquiries', `${CONTACT_EMAIL}\nFor general questions about the website and Pelvin.`], ['Business & partnerships', `${BUSINESS_EMAIL}\nFor product conversations, potential collaboration and business topics.`], ['Founder contact', `${FOUNDER_EMAIL}\nDirect contact with Schahin Samadzadeh.`], ['Current stage', 'Pelvin is currently in product development. Conversations are intended for professional exchange and a transparent presentation of the current concept.']] }
+      : { title: 'Contact', intro: 'The right contact for product questions, business conversations or a direct exchange with the founder.', blocks: [['General inquiries', `${CONTACT_EMAIL}\nFor general questions about the website and Pelvin.`], ['Business & partnerships', `${BUSINESS_EMAIL}\nFor product conversations, potential collaboration and business topics.`], ['Founder contact', `${FOUNDER_EMAIL}\nDirect contact with Schahin Samadzadeh.`], ['Current stage', 'Pelvin is currently developing Employee Lifecycle workflows and Hiring Intelligence research. Conversations provide a transparent presentation of the current product concept.']] }
   return <div className="legal-page"><NavBar /><main><span className="orange-tag">PELVIN</span><h1>{content.title}</h1><p className="legal-intro">{content.intro}</p><div>{content.blocks.map(([heading, copy]) => <section key={heading}><h2>{heading}</h2><p>{copy}</p></section>)}</div>{type === 'kontakt' && <a className="legal-cta" href="#/produktgespraech">Request a product conversation <ArrowRight size={16} /></a>}</main></div>
 }
 

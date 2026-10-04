@@ -18,7 +18,7 @@ const menus = [
       [
         { label: 'Tasks & approvals', copy: 'Clear steps, owners and decisions in one workflow.', href: '#functions', icon: ClipboardCheck },
         { label: 'Hardware & access', copy: 'Plan equipment, applications and licenses together.', href: '#collaboration', icon: Laptop },
-        { label: 'Hiring intelligence', copy: 'Explore Austrian job-market activity and company hiring signals.', href: '#hiring-intelligence', icon: Radar },
+        { label: 'Hiring intelligence', copy: 'Explore job-market activity and hiring signals across Germany and Austria.', href: '#hiring-intelligence', icon: Radar },
       ],
       [
         { label: 'Integrations', copy: 'Prepared for Microsoft Entra ID, 365 and Intune.', href: '#security', icon: Workflow },
@@ -31,7 +31,7 @@ const menus = [
     label: 'Demo',
     columns: [
       [
-        { label: 'HR Onboarding Demo', copy: 'Connect Microsoft Entra and prepare a new employee for onboarding.', href: '/werbung/', icon: Users },
+        { label: 'HR Onboarding Demo', copy: 'Preview how HR, managers and IT coordinate a new employee workflow.', href: '/werbung/', icon: Users },
       ],
       [
         { label: 'Job Market Intelligence', copy: 'Explore jobs, companies, archives, AI signals and salary data.', href: '/werbung-jobs/', icon: Radar },

@@ -8,8 +8,8 @@ import type { GeometryCollection, Topology } from 'topojson-specification'
 import world from 'world-atlas/countries-110m.json'
 import {
   Archive, BarChart3, Bell, BriefcaseBusiness, Building2, CalendarDays,
-  ChevronDown, CircleHelp, Globe2, LayoutDashboard, Search, Settings2,
-  Sparkles, TrendingUp,
+  ChevronDown, CircleHelp, ClipboardCheck, Globe2, KeyRound, Laptop,
+  LayoutDashboard, Search, Settings2, ShieldCheck, Sparkles, TrendingUp, Users,
 } from 'lucide-react'
 import { BrandMark } from '../components/Brand'
 
@@ -125,16 +125,30 @@ const navItems = [
   { icon: Archive, label: 'Archive' },
 ]
 
-function DashboardSidebar({ active }: { active: string }) {
+const onboardingNavItems = [
+  { icon: LayoutDashboard, label: 'Overview' },
+  { icon: Users, label: 'Employee' },
+  { icon: ClipboardCheck, label: 'Tasks' },
+  { icon: ShieldCheck, label: 'Approvals' },
+  { icon: Laptop, label: 'Equipment' },
+  { icon: KeyRound, label: 'Access' },
+  { icon: Sparkles, label: 'Readiness' },
+]
+
+type DashboardMode = 'market' | 'onboarding'
+
+function DashboardSidebar({ active, mode }: { active: string; mode: DashboardMode }) {
+  const onboarding = mode === 'onboarding'
+  const items = onboarding ? onboardingNavItems : navItems
   return <>
     <aside className="market-dashboard-sidebar">
       <div className="dashboard-brand"><BrandMark /><button type="button" aria-label="Switch workspace"><ChevronDown size={14} /></button></div>
-      <label className="dashboard-search"><Search size={15} /><span>Search market</span><kbd>/</kbd></label>
-      <small>WORKSPACE</small>
-      <nav>{navItems.map(({ icon: Icon, label }) => <button className={active === label ? 'is-active' : ''} type="button" key={label}><Icon size={16} /><span>{label}</span>{active === label && <i />}</button>)}</nav>
-      <small>MARKETS</small>
-      <div className="market-switcher"><Globe2 size={16} /><div><strong>DACH</strong><span>Germany + Austria</span></div><ChevronDown size={13} /></div>
-      <div className="sidebar-support"><CircleHelp size={15} /><div><strong>Need context?</strong><span>View methodology</span></div></div>
+      <label className="dashboard-search"><Search size={15} /><span>{onboarding ? 'Search workflow' : 'Search market'}</span><kbd>/</kbd></label>
+      <small>{onboarding ? 'WORKFLOW' : 'WORKSPACE'}</small>
+      <nav>{items.map(({ icon: Icon, label }) => <button className={active === label ? 'is-active' : ''} type="button" key={label}><Icon size={16} /><span>{label}</span>{active === label && <i />}</button>)}</nav>
+      <small>{onboarding ? 'EMPLOYEE' : 'MARKETS'}</small>
+      <div className="market-switcher">{onboarding ? <Users size={16} /> : <Globe2 size={16} />}<div><strong>{onboarding ? 'Sarah Miller' : 'DACH'}</strong><span>{onboarding ? 'Starts 02 Nov 2026' : 'Germany + Austria'}</span></div><ChevronDown size={13} /></div>
+      <div className="sidebar-support"><CircleHelp size={15} /><div><strong>{onboarding ? 'Need context?' : 'Need context?'}</strong><span>{onboarding ? 'View onboarding plan' : 'View methodology'}</span></div></div>
       <button className="sidebar-settings" type="button"><Settings2 size={16} /> Settings</button>
     </aside>
   </>
@@ -146,13 +160,14 @@ type MarketDashboardFrameProps = {
   title: string
   subtitle: string
   children: ReactNode
+  mode?: DashboardMode
 }
 
-export function MarketDashboardFrame({ active, eyebrow, title, subtitle, children }: MarketDashboardFrameProps) {
+export function MarketDashboardFrame({ active, eyebrow, title, subtitle, children, mode = 'market' }: MarketDashboardFrameProps) {
   return <div className={`market-dashboard-shell ${active === 'Market pulse' ? '' : 'is-workspace-view'}`}>
-    <DashboardSidebar active={active} />
+    <DashboardSidebar active={active} mode={mode} />
     <div className="market-dashboard-main">
-      <header className="market-dashboard-topbar"><div><span>{eyebrow}</span><h3>{title}</h3><p>{subtitle}</p></div><div className="dashboard-actions"><button type="button"><CalendarDays size={14} /> Jan–Jun 2026</button><button type="button" aria-label="Notifications"><Bell size={15} /></button><div className="dashboard-avatar">PS</div></div></header>
+      <header className="market-dashboard-topbar"><div><span>{eyebrow}</span><h3>{title}</h3><p>{subtitle}</p></div><div className="dashboard-actions"><button type="button"><CalendarDays size={14} /> {mode === 'onboarding' ? 'Starts 02 Nov 2026' : 'Jan–Jun 2026'}</button><button type="button" aria-label="Notifications"><Bell size={15} /></button><div className="dashboard-avatar">{mode === 'onboarding' ? 'HR' : 'PS'}</div></div></header>
       {children}
     </div>
   </div>

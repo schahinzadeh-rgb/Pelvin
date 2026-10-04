@@ -1,11 +1,13 @@
 import { useEffect } from 'react'
 import {
-  ArrowRight, CalendarDays, Check, CheckCircle2, ClipboardCheck,
-  Laptop, LockKeyhole, PackageCheck, ShieldCheck, Sparkles, Users,
+  ArrowRight, CalendarDays, CheckCircle2, ClipboardCheck, KeyRound,
+  Laptop, PackageCheck, ShieldCheck, Sparkles, UserRound, Users,
 } from 'lucide-react'
 import { NavBar } from '../components/NavBar'
 import { StoryVisualFrame } from './StoryVisualFrame'
+import { MarketDashboardFrame } from './MarketDashboard'
 import './advertising.css'
+import './jobsAdvertising.css'
 
 const stages = [
   {
@@ -31,46 +33,35 @@ const stages = [
   },
 ] as const
 
-function StoryBar({ label }: { label: string }) {
-  return <div className="story-ui-bar"><span><i /><i /><i /></span><small>{label}</small></div>
-}
-
 function ProfileVisual() {
-  return <StoryVisualFrame><div className="story-ui profile-ui">
-    <StoryBar label="NEW EMPLOYEE · DRAFT" />
-    <div className="profile-ui-body">
-      <aside><div className="profile-avatar"><Users size={24} /></div><span>NEW HIRE</span><strong>Sarah Miller</strong><small>Marketing Manager</small></aside>
-      <div className="profile-fields">
-        <div><span>Start date</span><strong><CalendarDays size={14} /> 02 Nov 2026</strong></div>
-        <div><span>Location</span><strong>Vienna</strong></div>
-        <div><span>Manager</span><strong>Daniel Weber</strong></div>
-        <div><span>Department</span><strong>Marketing</strong></div>
+  const requirements = [['Laptop', 'MacBook Pro 14″'], ['Applications', 'Microsoft 365 · Figma'], ['Access profile', 'Marketing standard']]
+  return <StoryVisualFrame><MarketDashboardFrame mode="onboarding" active="Employee" eyebrow="NEW EMPLOYEE" title="Employee profile" subtitle="Core details and workplace requirements">
+    <div className="onboarding-dashboard-content">
+      <div className="onboarding-kpis"><article><span>START DATE</span><strong>02 Nov 2026</strong><small><CalendarDays size={13} /> Confirmed</small></article><article><span>LOCATION</span><strong>Vienna</strong><small>Austria office</small></article><article><span>DEPARTMENT</span><strong>Marketing</strong><small>Growth team</small></article><article><span>MANAGER</span><strong>Daniel Weber</strong><small>Request owner</small></article></div>
+      <div className="onboarding-profile-grid">
+        <section className="onboarding-panel employee-card"><header><span>EMPLOYEE</span><b>Profile complete</b></header><div className="employee-summary"><div><UserRound size={26} /></div><span><strong>Sarah Miller</strong><small>Marketing Manager</small><em>Vienna · Employee ID PLV-2048</em></span></div><footer><CheckCircle2 size={14} /> Core information confirmed</footer></section>
+        <section className="onboarding-panel requirements-card"><header><span>WORKPLACE REQUIREMENTS</span><b>3 defined</b></header><div>{requirements.map(([label,value]) => <article key={label}><i><CheckCircle2 size={14} /></i><span><small>{label}</small><strong>{value}</strong></span></article>)}</div></section>
       </div>
     </div>
-    <div className="story-ui-note"><CheckCircle2 size={14} /> Core information captured</div>
-  </div></StoryVisualFrame>
+  </MarketDashboardFrame></StoryVisualFrame>
 }
 
 function TasksVisual() {
-  const tasks = [
-    { icon: Laptop, label: 'Prepare laptop', owner: 'Hardware logistics', state: 'IN PROGRESS' },
-    { icon: LockKeyhole, label: 'Create access package', owner: 'IT operations', state: 'OPEN' },
-    { icon: ClipboardCheck, label: 'Approve applications', owner: 'Manager', state: 'APPROVED' },
+  const columns = [
+    { title: 'TO DO', count: 2, tasks: [['Approve applications', 'Daniel Weber', 'Today'], ['Assign security group', 'IT Operations', '28 Oct']] },
+    { title: 'IN PROGRESS', count: 2, tasks: [['Prepare laptop', 'Hardware Logistics', '30 Oct'], ['Create Microsoft 365 account', 'IT Operations', '30 Oct']] },
+    { title: 'DONE', count: 2, tasks: [['Confirm employee details', 'HR', 'Completed'], ['Select workplace package', 'Daniel Weber', 'Completed']] },
   ]
-  return <StoryVisualFrame tone="violet"><div className="story-ui tasks-ui">
-    <StoryBar label="ONBOARDING · TASKS" />
-    <div className="tasks-summary"><div><span>Sarah Miller</span><strong>6 of 9 steps coordinated</strong></div><b>67%</b></div>
-    <div className="task-rows">{tasks.map(({ icon: Icon, label, owner, state }) => <article key={label}><span><Icon size={16} /></span><div><strong>{label}</strong><small>{owner}</small></div><b className={state === 'APPROVED' ? 'is-done' : ''}>{state}</b></article>)}</div>
-  </div></StoryVisualFrame>
+  return <StoryVisualFrame tone="violet"><MarketDashboardFrame mode="onboarding" active="Tasks" eyebrow="ONBOARDING WORKFLOW" title="Task coordination" subtitle="Owners, due dates and current progress">
+    <div className="onboarding-dashboard-content"><div className="workflow-progress"><span><strong>Sarah Miller</strong><small>6 of 9 required steps coordinated</small></span><div><i style={{ width: '67%' }} /><b>67%</b></div></div><div className="onboarding-kanban">{columns.map(column => <section key={column.title}><header><span>{column.title}</span><b>{column.count}</b></header>{column.tasks.map(([task,owner,date]) => <article key={task}><i>{column.title === 'DONE' ? <CheckCircle2 size={15} /> : column.title === 'IN PROGRESS' ? <Laptop size={15} /> : <ClipboardCheck size={15} />}</i><strong>{task}</strong><small>{owner}</small><time>{date}</time></article>)}</section>)}</div></div>
+  </MarketDashboardFrame></StoryVisualFrame>
 }
 
 function ReadyVisual() {
-  return <StoryVisualFrame tone="green"><div className="story-ui ready-ui">
-    <StoryBar label="READINESS · OVERVIEW" />
-    <div className="readiness-ring"><div><strong>8/9</strong><span>steps ready</span></div></div>
-    <div className="ready-checks"><span><Check size={13} /> Employee profile</span><span><Check size={13} /> Equipment assigned</span><span><Check size={13} /> Standard access</span><span className="is-open">1 manager approval open</span></div>
-    <div className="ready-footer"><ShieldCheck size={15} /> Status visible before the start date</div>
-  </div></StoryVisualFrame>
+  const rows = [['Equipment', 'MacBook Pro 14″', 'Ready'], ['Account', 'Microsoft 365', 'Ready'], ['Access', 'Marketing standard', 'Ready'], ['Approval', 'Figma license', 'Open']]
+  return <StoryVisualFrame tone="green"><MarketDashboardFrame mode="onboarding" active="Readiness" eyebrow="DAY-ONE READINESS" title="Readiness overview" subtitle="Completion, approvals and remaining blockers">
+    <div className="onboarding-dashboard-content"><div className="readiness-kpis"><article><span>READINESS</span><strong>89%</strong><small>8 of 9 steps complete</small></article><article><span>START DATE</span><strong>02 Nov</strong><small>5 days remaining</small></article><article className="has-blocker"><span>OPEN BLOCKERS</span><strong>1</strong><small>Manager approval</small></article></div><section className="onboarding-panel readiness-table"><header><div><ShieldCheck size={17} /><span><strong>Day-one checklist</strong><small>Required setup for Sarah Miller</small></span></div><b>Updated now</b></header><div>{rows.map(([category,item,status]) => <article key={category}><i>{category === 'Equipment' ? <Laptop size={15} /> : category === 'Access' ? <KeyRound size={15} /> : <ClipboardCheck size={15} />}</i><span><small>{category}</small><strong>{item}</strong></span><b className={status === 'Open' ? 'is-open' : ''}>{status === 'Ready' && <CheckCircle2 size={13} />}{status}</b></article>)}</div></section></div>
+  </MarketDashboardFrame></StoryVisualFrame>
 }
 
 function StoryVisual({ type }: { type: typeof stages[number]['visual'] }) {

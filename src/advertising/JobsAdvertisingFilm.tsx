@@ -101,8 +101,8 @@ export function JobsAdvertisingFilm() {
     <section className="market-story-hero">
       <div className="market-story-wordmark"><BrandMark /><span>HIRING INTELLIGENCE</span></div>
       <span><Sparkles size={12} /> GERMANY + AUSTRIA · PRODUCT CONCEPT</span>
-      <h1>Understand hiring<br />before the market does.</h1>
-      <p>Current roles, company activity, explainable signals and historical context — organized into one focused research workflow.</p>
+      <h1>Understand how hiring<br />activity is changing.</h1>
+      <p>Role activity, company profiles, explainable signals and historical context — organized into one focused research workflow.</p>
       <a href="#market-story">Explore market intelligence <ArrowRight size={15} /></a>
     </section>
 
@@ -114,6 +114,6 @@ export function JobsAdvertisingFilm() {
       </article>)}
     </section>
 
-    <section className="market-story-result"><div><Radar size={25} /><span>THE RESEARCH LAYER</span><h2>Live market.<br />Historical context.</h2><p>A clearer way to explore how roles, companies and advertised salaries change over time.</p></div><a href="/#/produktgespraech">Discuss the product concept <ArrowRight size={16} /></a></section>
+    <section className="market-story-result"><div><Radar size={25} /><span>THE RESEARCH LAYER</span><h2>Market signals.<br />Historical context.</h2><p>A clearer way to explore how roles, companies and advertised salaries change over time.</p></div><a href="/#/produktgespraech">Discuss the product concept <ArrowRight size={16} /></a></section>
   </main>
 }
