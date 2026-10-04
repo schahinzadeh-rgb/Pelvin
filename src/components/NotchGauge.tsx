@@ -9,7 +9,7 @@ type NotchGaugeProps = {
   accent?: string
 }
 
-export function NotchGauge({ value, label, displayValue, totalNotches = 44, size = 250, accent = '#f6821f' }: NotchGaugeProps) {
+export function NotchGauge({ value, label, displayValue, totalNotches = 44, size = 250, accent = '#ffd604' }: NotchGaugeProps) {
   const [animatedValue, setAnimatedValue] = useState(0)
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => setAnimatedValue(value))
@@ -25,9 +25,9 @@ export function NotchGauge({ value, label, displayValue, totalNotches = 44, size
     <svg viewBox={`0 0 ${size} ${size}`} aria-hidden="true">
       <defs>
         <linearGradient id="gauge-accent" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#ffb06e" />
+          <stop offset="0" stopColor="#ffec72" />
           <stop offset=".65" stopColor={accent} />
-          <stop offset="1" stopColor="#de5b08" />
+          <stop offset="1" stopColor="#a88900" />
         </linearGradient>
       </defs>
       {notches.map((_, index) => {

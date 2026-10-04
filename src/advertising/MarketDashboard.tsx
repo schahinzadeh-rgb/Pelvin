@@ -88,7 +88,7 @@ function EuropeSupportMap() {
     <header><div><span>REGION COVERAGE</span><h4>Europe rollout</h4></div><Globe2 size={18} /></header>
     <div className="map-status"><i className={supported ? 'is-supported' : ''} /><div><strong>{hovered}</strong><span>{supported ? 'Supported · demo coverage' : 'Coming soon'}</span></div></div>
     <svg className="support-map" viewBox="0 0 510 350" role="img" aria-label="Europe map showing Germany and Austria as supported demo markets">
-      <defs><linearGradient id="supported-country" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#ff7a35"/><stop offset="1" stopColor="#ffb07a"/></linearGradient></defs>
+      <defs><linearGradient id="supported-country" x1="0" y1="0" x2="1" y2="1"><stop stopColor="#ffd604"/><stop offset="1" stopColor="#ffec72"/></linearGradient></defs>
       {countries.map((country, index) => {
         const name = country.properties?.name ?? `Country ${index + 1}`
         const isSupported = supportedCountries.has(name)

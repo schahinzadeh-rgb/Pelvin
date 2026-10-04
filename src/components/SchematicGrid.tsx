@@ -58,7 +58,7 @@ function Diagram({ type, Icon }: { type: Card['type']; Icon: LucideIcon }) {
           <rect x="78" y="28" width="344" height="174" rx="9" fill="none" stroke="#505050" />
           <path d="M78 61h344" stroke="#505050" />
           <circle cx="94" cy="45" r="4" fill="#6d6d6d" /><circle cx="108" cy="45" r="4" fill="#6d6d6d" /><circle cx="122" cy="45" r="4" fill="#6d6d6d" />
-          <path className="flow-line accent-flow" d="M250 101v32" stroke="#ff5e1f" strokeDasharray="4 5" />
+          <path className="flow-line accent-flow" d="M250 101v32" stroke="#ffd604" strokeDasharray="4 5" />
         </svg>
         <span className="node-icon compact"><Icon size={28} fill="currentColor" /></span>
       </div>
@@ -70,7 +70,7 @@ function Diagram({ type, Icon }: { type: Card['type']; Icon: LucideIcon }) {
       <svg viewBox="0 0 500 250" preserveAspectRatio="none" aria-hidden="true">
         {type === 'search' && (
           <>
-            <path className="flow-line accent-flow" d="M250 0v82M250 168v82M0 125h192M308 125h192" stroke="#b34e16" strokeDasharray="6 6" />
+            <path className="flow-line accent-flow" d="M250 0v82M250 168v82M0 125h192M308 125h192" stroke="#b79600" strokeDasharray="6 6" />
             <path className="flow-line" d="M70 0v78M70 172v78M430 0v78M430 172v78" stroke="#3f3f3f" strokeDasharray="6 6" />
             <MiniServer x={70} y={125} /><MiniServer x={430} y={125} />
             <MiniServer x={250} y={18} kind="bot" /><MiniServer x={250} y={232} kind="bot" />
@@ -78,7 +78,7 @@ function Diagram({ type, Icon }: { type: Card['type']; Icon: LucideIcon }) {
         )}
         {type === 'govern' && (
           <>
-            <path className="flow-line accent-flow" d="M0 74h193M307 74h193M250 0v43M250 145v105" stroke="#b34e16" strokeDasharray="7 5" />
+            <path className="flow-line accent-flow" d="M0 74h193M307 74h193M250 0v43M250 145v105" stroke="#b79600" strokeDasharray="7 5" />
             <path className="flow-line" d="M64 74v126M436 74v126M250 145v55" stroke="#3f3f3f" strokeDasharray="7 5" />
             <MiniServer x={64} y={74} kind="bot" /><MiniServer x={436} y={74} kind="bot" />
             <MiniServer x={64} y={204} /><MiniServer x={250} y={204} kind="bot" /><MiniServer x={436} y={204} />
@@ -86,7 +86,7 @@ function Diagram({ type, Icon }: { type: Card['type']; Icon: LucideIcon }) {
         )}
         {type === 'protect' && (
           <>
-            <path className="flow-line accent-flow" d="M0 48h90c0 47 26 76 101 76M0 202h90c0-47 26-76 101-76M309 125h78" fill="none" stroke="#cc5d1a" strokeDasharray="8 5" />
+            <path className="flow-line accent-flow" d="M0 48h90c0 47 26 76 101 76M0 202h90c0-47 26-76 101-76M309 125h78" fill="none" stroke="#c9a900" strokeDasharray="8 5" />
             <path className="flow-line" d="M387 125h113" stroke="#3f3f3f" strokeDasharray="8 5" />
             <rect x="386" y="57" width="100" height="136" rx="9" fill="none" stroke="#505050" />
             <path d="M386 84h100M404 106h63v52h-63zM404 170h63M404 181h63" fill="none" stroke="#505050" />
