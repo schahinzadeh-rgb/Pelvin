@@ -14,8 +14,6 @@
   --line-soft: #272525;
   --orange: #ff5e1f;
   --orange-2: #ff8b45;
-  --action-green: #71e9bb;
-  --action-green-hover: #91f0ca;
   --ease: cubic-bezier(.19, 1, .22, 1);
 }
 
@@ -345,53 +343,6 @@ footer { background: var(--bg); }
   .legal-page > main { padding-top:120px; }.legal-page > main section { grid-template-columns:1fr;gap:10px; }
   .process-page > main { width:calc(100% - 16px);padding-top:88px; }.process-hero { min-height:auto;grid-template-columns:1fr; }.process-hero-copy { padding:62px 24px; }.process-hero h1 { font-size:52px; }.process-symbol { min-height:280px;border-left:0;border-top:1px solid var(--line); }.process-facts { grid-template-columns:1fr; }.process-facts article { min-height:90px;border-right:0;border-bottom:1px solid var(--line); }.process-facts article:last-child { border-bottom:0; }.process-flow { grid-template-columns:1fr;gap:45px;padding:70px 24px 80px; }.process-end { align-items:flex-start;flex-direction:column;padding:34px 24px; }
   .demo-modal-backdrop { padding:10px; }.demo-modal { max-height:calc(100vh - 20px);border-radius:12px; }.demo-modal-header { height:54px;padding-inline:18px 12px; }.demo-modal-body { grid-template-columns:1fr;gap:22px;padding:20px; }.demo-request-copy h1 { font-size:40px; }.demo-modal form { grid-template-columns:1fr;padding:16px; }.demo-modal .full-field,.demo-modal form button,.demo-modal form small { grid-column:1; }
-}
-
-/* Green action language; brand marks, icons and decorative graphics stay orange. */
-.mono-label,
-.section-kicker,
-.mega-catalog-item:hover strong,
-.mega-footer .mega-footer-primary,
-.select-domain,
-.section-heading a,
-.security-copy a,
-.feature-strip > a:hover h3,
-.feature-strip > a:hover .feature-open,
-.step-track article > span,
-.schematic-card:hover .schematic-copy h3,
-.footer-group a:hover,
-.footer-group .footer-primary-email,
-.legal-cta,
-.process-step-list article > span,
-.process-end > a,
-.not-found > span,
-.not-found > a {
-  color: var(--action-green);
-}
-
-.hero-actions .hero-primary,
-.cta-actions a:first-child,
-.process-hero-copy > a,
-.login-panel > a:not(:first-child),
-.demo-modal form button,
-.mobile-drawer .mobile-primary {
-  border-color: var(--action-green);
-  background: var(--action-green);
-  color: #101b17;
-}
-
-.hero-actions .hero-primary:hover,
-.cta-actions a:first-child:hover,
-.demo-modal form button:hover {
-  border-color: var(--action-green-hover);
-  background: var(--action-green-hover);
-  color: #101b17;
-}
-
-.hiring-teaser > a:hover {
-  border-color: var(--action-green);
-  background: rgba(113,233,187,.08);
-  color: var(--action-green);
 }
 
 @media (prefers-reduced-motion: reduce) {
