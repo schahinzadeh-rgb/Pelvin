@@ -246,6 +246,9 @@ footer { background: var(--bg); }
 .legal-page main > div { border-top: 1px solid var(--line); }
 .legal-page > main section { display: grid; grid-template-columns: 210px 1fr; gap: 30px; padding: 28px 0; border-bottom: 1px solid var(--line); }
 .legal-page > main section h2 { margin: 0; font-size: 15px; }.legal-page > main section p { margin: 0; color: var(--muted); white-space: pre-line; line-height: 1.7; }
+.legal-page > main section.founder-contact-row { position:relative;margin:8px -18px;padding:24px 18px;border:1px solid rgba(255,214,4,.2);border-left:3px solid var(--orange);border-radius:8px;background:rgba(255,214,4,.035); }
+.founder-contact-row h2 { display:flex;align-items:center;gap:9px; }.founder-contact-row h2 span { padding:3px 5px;border:1px solid rgba(255,214,4,.24);border-radius:3px;color:#c9a900;font:700 8px/1 "Courier New",monospace;letter-spacing:.08em; }
+.founder-contact-row p a { display:inline-block;color:var(--orange);font-size:16px;font-weight:650; }.founder-contact-row p small { display:block;margin-top:3px;color:var(--muted);font-size:13px; }
 .legal-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 30px; color: var(--orange); }
 .process-page { min-height:100vh; background:var(--bg); color:var(--ink); }
 .process-page > main { width:min(1080px,calc(100% - 32px)); margin:auto; padding-top:104px; border-inline:1px dashed var(--line); }
