@@ -1,74 +1,38 @@
 import { useEffect } from 'react'
-import {
-  ArrowRight, CalendarDays, CheckCircle2, ClipboardCheck, KeyRound,
-  Laptop, PackageCheck, ShieldCheck, Sparkles, UserRound, Users,
-} from 'lucide-react'
+import { ArrowRight, PackageCheck, Sparkles } from 'lucide-react'
 import { NavBar } from '../components/NavBar'
-import { StoryVisualFrame } from './StoryVisualFrame'
-import { MarketDashboardFrame } from './MarketDashboard'
 import './advertising.css'
-import './jobsAdvertising.css'
 
 const stages = [
   {
-    number: '01',
-    eyebrow: 'CAPTURE THE REQUEST',
-    title: 'Start with one complete employee profile.',
-    copy: 'HR records the new hire, role and start date. The manager adds workplace requirements before separate messages and spreadsheets appear.',
-    visual: 'profile',
+    eyebrow: 'ONBOARDING CONTROL',
+    title: 'Track every onboarding in one view.',
+    copy: 'New hires, current progress, completed steps and upcoming sessions are visible together. The checklist shows which actions are already complete and where work is still open.',
+    image: '/assets/product-ui/onboarding.png',
+    alt: 'Pelvin onboarding dashboard with progress, checklist, recent new hires and upcoming sessions',
   },
   {
-    number: '02',
-    eyebrow: 'COORDINATE THE WORK',
-    title: 'Turn requirements into owned tasks.',
-    copy: 'Hardware, applications, access and approvals move to the right teams with clear owners, dates and a shared status.',
-    visual: 'tasks',
+    eyebrow: 'SHARED OVERVIEW',
+    title: 'Keep the wider workforce context visible.',
+    copy: 'The overview brings job-market activity, tracked companies, alerts and recent updates into the same workspace instead of separating operational work from market context.',
+    image: '/assets/product-ui/overview.png',
+    alt: 'Pelvin overview dashboard with market metrics, trends, activity and hiring companies',
   },
   {
-    number: '03',
-    eyebrow: 'CONFIRM READINESS',
-    title: 'See what is ready before day one.',
-    copy: 'Open decisions and blockers remain visible. The onboarding is ready only when the required work has been confirmed.',
-    visual: 'ready',
+    eyebrow: 'DOCUMENT WORKSPACE',
+    title: 'Keep process material organized.',
+    copy: 'Onboarding guides, market reports, company snapshots, job lists and analyst notes live in one searchable document area with clear categories, owners and status.',
+    image: '/assets/product-ui/documents.png',
+    alt: 'Pelvin documents workspace with categorized files and a document preview',
+  },
+  {
+    eyebrow: 'WORKSPACE SETUP',
+    title: 'Configure the workspace around the team.',
+    copy: 'Profile, workspace, notification and integration settings provide one place to manage the account, organization defaults and how the team receives updates.',
+    image: '/assets/product-ui/settings.png',
+    alt: 'Pelvin settings screen with profile and workspace preferences',
   },
 ] as const
-
-function ProfileVisual() {
-  const requirements = [['Laptop', 'MacBook Pro 14″'], ['Applications', 'Microsoft 365 · Figma'], ['Access profile', 'Marketing standard']]
-  return <StoryVisualFrame><MarketDashboardFrame mode="onboarding" active="Employee" eyebrow="NEW EMPLOYEE" title="Employee profile" subtitle="Core details and workplace requirements">
-    <div className="onboarding-dashboard-content">
-      <div className="onboarding-kpis"><article><span>START DATE</span><strong>02 Nov 2026</strong><small><CalendarDays size={13} /> Confirmed</small></article><article><span>LOCATION</span><strong>Vienna</strong><small>Austria office</small></article><article><span>DEPARTMENT</span><strong>Marketing</strong><small>Growth team</small></article><article><span>MANAGER</span><strong>Daniel Weber</strong><small>Request owner</small></article></div>
-      <div className="onboarding-profile-grid">
-        <section className="onboarding-panel employee-card"><header><span>EMPLOYEE</span><b>Profile complete</b></header><div className="employee-summary"><div><UserRound size={26} /></div><span><strong>Sarah Miller</strong><small>Marketing Manager</small><em>Vienna · Employee ID PLV-2048</em></span></div><footer><CheckCircle2 size={14} /> Core information confirmed</footer></section>
-        <section className="onboarding-panel requirements-card"><header><span>WORKPLACE REQUIREMENTS</span><b>3 defined</b></header><div>{requirements.map(([label,value]) => <article key={label}><i><CheckCircle2 size={14} /></i><span><small>{label}</small><strong>{value}</strong></span></article>)}</div></section>
-      </div>
-    </div>
-  </MarketDashboardFrame></StoryVisualFrame>
-}
-
-function TasksVisual() {
-  const columns = [
-    { title: 'TO DO', count: 2, tasks: [['Approve applications', 'Daniel Weber', 'Today'], ['Assign security group', 'IT Operations', '28 Oct']] },
-    { title: 'IN PROGRESS', count: 2, tasks: [['Prepare laptop', 'Hardware Logistics', '30 Oct'], ['Create Microsoft 365 account', 'IT Operations', '30 Oct']] },
-    { title: 'DONE', count: 2, tasks: [['Confirm employee details', 'HR', 'Completed'], ['Select workplace package', 'Daniel Weber', 'Completed']] },
-  ]
-  return <StoryVisualFrame tone="violet"><MarketDashboardFrame mode="onboarding" active="Tasks" eyebrow="ONBOARDING WORKFLOW" title="Task coordination" subtitle="Owners, due dates and current progress">
-    <div className="onboarding-dashboard-content"><div className="workflow-progress"><span><strong>Sarah Miller</strong><small>6 of 9 required steps coordinated</small></span><div><i style={{ width: '67%' }} /><b>67%</b></div></div><div className="onboarding-kanban">{columns.map(column => <section key={column.title}><header><span>{column.title}</span><b>{column.count}</b></header>{column.tasks.map(([task,owner,date]) => <article key={task}><i>{column.title === 'DONE' ? <CheckCircle2 size={15} /> : column.title === 'IN PROGRESS' ? <Laptop size={15} /> : <ClipboardCheck size={15} />}</i><strong>{task}</strong><small>{owner}</small><time>{date}</time></article>)}</section>)}</div></div>
-  </MarketDashboardFrame></StoryVisualFrame>
-}
-
-function ReadyVisual() {
-  const rows = [['Equipment', 'MacBook Pro 14″', 'Ready'], ['Account', 'Microsoft 365', 'Ready'], ['Access', 'Marketing standard', 'Ready'], ['Approval', 'Figma license', 'Open']]
-  return <StoryVisualFrame tone="green"><MarketDashboardFrame mode="onboarding" active="Readiness" eyebrow="DAY-ONE READINESS" title="Readiness overview" subtitle="Completion, approvals and remaining blockers">
-    <div className="onboarding-dashboard-content"><div className="readiness-kpis"><article><span>READINESS</span><strong>89%</strong><small>8 of 9 steps complete</small></article><article><span>START DATE</span><strong>02 Nov</strong><small>5 days remaining</small></article><article className="has-blocker"><span>OPEN BLOCKERS</span><strong>1</strong><small>Manager approval</small></article></div><section className="onboarding-panel readiness-table"><header><div><ShieldCheck size={17} /><span><strong>Day-one checklist</strong><small>Required setup for Sarah Miller</small></span></div><b>Updated now</b></header><div>{rows.map(([category,item,status]) => <article key={category}><i>{category === 'Equipment' ? <Laptop size={15} /> : category === 'Access' ? <KeyRound size={15} /> : <ClipboardCheck size={15} />}</i><span><small>{category}</small><strong>{item}</strong></span><b className={status === 'Open' ? 'is-open' : ''}>{status === 'Ready' && <CheckCircle2 size={13} />}{status}</b></article>)}</div></section></div>
-  </MarketDashboardFrame></StoryVisualFrame>
-}
-
-function StoryVisual({ type }: { type: typeof stages[number]['visual'] }) {
-  if (type === 'profile') return <ProfileVisual />
-  if (type === 'tasks') return <TasksVisual />
-  return <ReadyVisual />
-}
 
 export function AdvertisingFilm() {
   useEffect(() => {
@@ -80,23 +44,22 @@ export function AdvertisingFilm() {
   return <main className="advertising-page onboarding-story-page">
     <NavBar />
     <section className="onboarding-story-hero">
-      <span><Sparkles size={12} /> ONBOARDING WORKFLOW · PRODUCT CONCEPT</span>
-      <h1>From confirmed hire<br />to ready for day one.</h1>
-      <p>A concise view of how Pelvin is designed to connect HR, managers and IT in one traceable onboarding process.</p>
-      <a href="#story"><span>Explore the workflow</span><ArrowRight size={15} /></a>
+      <span><Sparkles size={12} /> EMPLOYEE OPERATIONS · PRODUCT INTERFACE</span>
+      <h1>Onboarding inside one<br />operational workspace.</h1>
+      <p>Pelvin brings onboarding progress, tasks, sessions, documents and workspace settings into one consistent interface for HR and the teams involved.</p>
+      <a href="#story"><span>Explore the interface</span><ArrowRight size={15} /></a>
     </section>
 
-    <section className="onboarding-story" id="story" aria-label="Pelvin onboarding workflow">
-      <div className="story-spine" aria-hidden="true" />
-      {stages.map((stage, index) => <article className={`story-stage ${index % 2 ? 'is-reversed' : ''}`} key={stage.number}>
+    <section className="onboarding-story product-screenshot-story" id="story" aria-label="Pelvin employee operations interface">
+      {stages.map((stage) => <article className="story-stage" key={stage.eyebrow}>
         <div className="story-copy"><span>{stage.eyebrow}</span><h2>{stage.title}</h2><p>{stage.copy}</p></div>
-        <figure><StoryVisual type={stage.visual} /></figure>
+        <figure className="product-shot"><img src={stage.image} alt={stage.alt} loading="lazy" /></figure>
       </article>)}
     </section>
 
     <section className="onboarding-story-result">
-      <div><PackageCheck size={24} /><span>THE RESULT</span><h2>One process.<br />No hidden handoffs.</h2><p>Every required step, owner and open decision stays in one shared operational view.</p></div>
-      <a href="/#/produktgespraech">Discuss the product concept <ArrowRight size={16} /></a>
+      <div><PackageCheck size={24} /><span>ONE SHARED WORKSPACE</span><h2>Clear progress.<br />Less fragmented work.</h2><p>The interface keeps onboarding status, supporting material and the wider workforce context accessible in one product.</p></div>
+      <a href="/#/produktgespraech">Discuss the product <ArrowRight size={16} /></a>
     </section>
   </main>
 }
