@@ -127,3 +127,19 @@
 .story-ui * {
   font-family: Arial, Helvetica, sans-serif !important;
 }
+
+/* Larger interface copy while preserving the existing mockup footprint. */
+.story-ui-bar small { font-size:11px; font-weight:700; }
+.profile-ui-body aside>span { font-size:10px; font-weight:700; }
+.profile-ui-body aside small { font-size:12px; font-weight:600; }
+.profile-fields span { font-size:11px; font-weight:600; }
+.profile-fields strong { font-size:13px; font-weight:700; }
+.story-ui-note { font-size:12px; font-weight:600; }
+.tasks-summary span { font-size:11px; font-weight:600; }
+.tasks-summary strong { font-size:16px; }
+.task-rows strong { font-size:13px; }
+.task-rows small { font-size:11px; font-weight:600; }
+.task-rows article>b { font-size:10px; font-weight:700; }
+.readiness-ring span { font-size:11px; font-weight:600; }
+.ready-checks span { font-size:12px; font-weight:600; }
+.ready-footer { font-size:11px; font-weight:600; }

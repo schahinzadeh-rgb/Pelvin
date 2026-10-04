@@ -100,3 +100,55 @@
   box-shadow:0 12px 25px rgba(43,48,57,.08);
 }
 .company-ui-mark img { width:34px;height:34px;display:block; }
+
+/* Improve legibility without changing any dashboard dimensions. */
+.dashboard-search,
+.market-dashboard-sidebar nav button { font-size:11px; font-weight:600; }
+.market-dashboard-sidebar>small { font-size:9px; font-weight:700; }
+.market-switcher strong { font-size:11px; }
+.market-switcher span,
+.sidebar-support span { font-size:9px; font-weight:600; }
+.sidebar-support strong,
+.sidebar-settings { font-size:10px; font-weight:700; }
+.market-dashboard-topbar>div:first-child>span { font-size:10px; font-weight:700; }
+.market-dashboard-topbar p { font-size:11px; font-weight:500; }
+.dashboard-actions button { font-size:10px; font-weight:600; }
+.dashboard-kpis span { font-size:10px; font-weight:600; }
+.dashboard-kpis small { font-size:9px; font-weight:600; }
+.market-data-card>header span { font-size:9px; font-weight:700; }
+.chart-legend span { font-size:10px !important; font-weight:700; }
+.chart-tooltip span,
+.hiring-bar-chart text,
+.support-map-card>footer span { font-size:9px; font-weight:600; }
+.market-axis-label { font-size:10px !important; }
+.map-status strong { font-size:10px; }
+.map-status span { font-size:9px; font-weight:600; }
+.confidence-pill { font-size:9px !important; }
+.ai-company-row strong { font-size:12px; }
+.ai-company-row span { font-size:10px; font-weight:600; }
+.ai-company-row>b { font-size:10px; }
+.ai-market-card>p { font-size:11px; font-weight:500; }
+.ai-reasons>span { font-size:9px; font-weight:700; }
+.ai-reasons ul { font-size:10px; font-weight:500; }
+.premium-ui-bar>div>span,
+.premium-ui-bar>small { font-size:11px; font-weight:700; }
+.company-ui-top>div>span,
+.activity-chart-head span { font-size:11px; font-weight:700; }
+.company-ui-metrics span { font-size:12px; font-weight:600; }
+.activity-feed strong { font-size:13px; }
+.activity-feed small,
+.activity-feed time { font-size:11px; font-weight:600; }
+.signals-ui-head span { font-size:11px; font-weight:700; }
+.signals-ui-head p { font-size:13px; font-weight:500; }
+.signals-ui-list strong { font-size:14px; }
+.signals-ui-list small { font-size:11px; font-weight:600; }
+.signals-ui-list em { font-size:10px; font-weight:700; }
+.archive-role>span,
+.salary-insight>span,
+.archive-role>div span { font-size:10px; font-weight:700; }
+.archive-role>p,
+.archive-role>div strong,
+.salary-insight>small { font-size:11px; font-weight:600; }
+.archive-alert strong { font-size:12px; }
+.archive-alert small,
+.archive-alert button { font-size:10px; font-weight:600; }
