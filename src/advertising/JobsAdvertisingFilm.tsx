@@ -104,7 +104,6 @@ export function JobsAdvertisingFilm() {
       <h1>Understand hiring<br />before the market does.</h1>
       <p>Current roles, company activity, explainable signals and historical context — organized into one focused research workflow.</p>
       <a href="#market-story">Explore market intelligence <ArrowRight size={15} /></a>
-      <div className="market-hero-orbit" aria-hidden="true"><i /><i /><i /><Radar size={34} /></div>
     </section>
 
     <section className="market-story" id="market-story" aria-label="Pelvin Hiring Intelligence workflow">
